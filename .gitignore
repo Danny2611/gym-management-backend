@@ -1,0 +1,53 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Build artifacts
+dist/
+build/
+
+# PM2 logs (nếu dùng)
+pids/
+*.pid
+*.seed
+
+
+
+# Cache
+.cache/
+.next/
+.parcel-cache/
+tmp/
+temp/
+
+# Test
+test-results/
+
+# Misc
+*.swp
+*.swo
+
+# TypeScript
+*.tsbuildinfo
