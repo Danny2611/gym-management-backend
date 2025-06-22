@@ -1,5 +1,5 @@
-import Promotion from '~/models/Promotion';
-import { IPromotion } from '~/types/promotion';
+import Promotion from '../models/Promotion';
+import { IPromotion } from '../types/promotion';
 
 export async function getAllActivePromotions(): Promise<IPromotion[]> {
   try {

@@ -1,6 +1,6 @@
-import Promotion, { IPromotion } from '~/models/Promotion';
-import Membership from '~/models/Membership';
-import Package from '~/models/Package';
+import Promotion, { IPromotion } from '../../models/Promotion';
+import Membership from '../../models/Membership';
+import Package from '../../models/Package';
 import { Types } from 'mongoose';
 import { isWithinInterval, isBefore, isAfter } from 'date-fns';
 

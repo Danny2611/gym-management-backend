@@ -329,7 +329,7 @@ export const validateNotificationOwnership = async (req: Request, res: Response,
     }
     
     // Import model ở đây để tránh circular dependency
-    const NotificationModule = await import('~/models/Notification');
+    const NotificationModule = await import('../models/Notification');
     const Notification = NotificationModule.default;
     
     // Kiểm tra xem tất cả notifications có thuộc về user này không

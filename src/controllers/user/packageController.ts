@@ -2,15 +2,10 @@
 
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import Package from '~/models/Package';
-import Membership from '~/models/Membership';
-import PackageDetail from '~/models/PackageDetail';
-import { validatePackageRequest } from '~/utils/validators/packageValidator';
-
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+import Package from '../../models/Package';
+import Membership from '../../models/Membership';
+import { validatePackageRequest } from '../../utils/validators/packageValidator';
+import { AuthRequest } from '../../types/auth';
 
 
 /**

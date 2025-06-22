@@ -1,12 +1,10 @@
 // src/controller/user/appoinmentController.ts
 import { Request, Response, NextFunction  } from 'express';
-import asyncHandler from 'express-async-handler';
 import { validationResult } from 'express-validator';
-import appointmentService from '~/services/appointmentService';
-import Trainer from '~/models/Trainer';
-import Membership from '~/models/Membership';
+import appointmentService from '../../services/appointmentService';
+import Membership from '../../models/Membership';
 import { Types } from 'mongoose';
-import { IAppointment } from '~/models/Appointment';
+
 
 interface AuthRequest extends Request {
   userId?: string;

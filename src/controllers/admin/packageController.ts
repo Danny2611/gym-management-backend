@@ -1,7 +1,7 @@
 // # Quản lý gói tập
 // controller/admin/packageController.ts
 import { Request, Response } from 'express';
-import packageService from '~/services/admin/packageService';
+import packageService from '../../services/admin/packageService';
 import { Types } from 'mongoose';
 
 interface AuthRequest extends Request {

@@ -1,12 +1,9 @@
 // controller/user/transactionController.ts
 import { Request, Response } from 'express';
-import transactionService from '~/services/transactionService';
-import { Types } from 'mongoose';
+import transactionService from '../../services/transactionService';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+import { AuthRequest } from '../../types/auth';
+
 
 // Get all transactions for the logged-in member with filters
 export const getAllMemberTransactions = async (req: AuthRequest, res: Response): Promise<void> => {

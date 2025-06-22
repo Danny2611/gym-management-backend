@@ -1,14 +1,14 @@
 //services/notificationService.ts
 import cron from 'node-cron';
-import Member from '~/models/Member';
-import Membership from '~/models/Membership';
-import Appointment from '~/models/Appointment';
-import Promotion from '~/models/Promotion';
-import WorkoutSchedule from '~/models/WorkoutSchedule';
+import Member from '../../models/Member';
+import Membership from '../../models/Membership';
+import Appointment from '../../models/Appointment';
+import Promotion from '../../models/Promotion';
+import WorkoutSchedule from '../../models/WorkoutSchedule';
 import pushNotificationService from './pushNotificationService';
-import { pushConfig, renderTemplate } from '~/config/push-notification';
+import { pushConfig, renderTemplate } from '../../config/push-notification';
 import { Types } from 'mongoose';
-import Notification from '~/models/Notification'; // Dùng `import` thay vì `require`
+import Notification from '../../models/Notification'; // Dùng `import` thay vì `require`
 
 // Định nghĩa interfaces cho populated objects
 interface PopulatedMember {

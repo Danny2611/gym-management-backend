@@ -3,19 +3,16 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { HydratedDocument } from 'mongoose';
-import mongoose, { Document, Schema, Types } from 'mongoose';
-import MoMoPaymentService from '~/services/momoPaymentService';
-import Package from '~/models/Package';
-import Payment from '~/models/Payment';
-import Membership, { IMembership } from '~/models/Membership';
-import Member from '~/models/Member';
-import Promotion from '~/models/Promotion';
-import { validatePaymentRequest } from '~/utils/validators/paymentValidator';
+import mongoose from 'mongoose';
+import MoMoPaymentService from '../../services/momoPaymentService';
+import Package from '../../models/Package';
+import Payment from '../../models/Payment';
+import Membership, { IMembership } from '../../models/Membership';
+import Member from '../../models/Member';
+import Promotion from '../../models/Promotion';
+import { validatePaymentRequest } from '../../utils/validators/paymentValidator';
+import { AuthRequest } from '../../types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
 
     interface AppliedPromotion {
       promotion_id: mongoose.Types.ObjectId;

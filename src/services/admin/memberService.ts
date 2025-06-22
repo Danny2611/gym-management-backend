@@ -1,7 +1,7 @@
 import Member from '../../models/Member';
 import Role from '../../models/Role';
 import { Types } from 'mongoose';
-import { MemberQueryOptions, MemberResponse } from '~/types/member';
+import { MemberQueryOptions, MemberResponse } from '../../types/member';
 
 
 //Get all members with pagination, filtering and sorting

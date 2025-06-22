@@ -1,7 +1,4 @@
-import Membership, { IMembership } from '~/models/Membership';
-import Member from '~/models/Member';
-import Package from '~/models/Package';
-import Payment from '~/models/Payment';
+import Membership, { IMembership } from '../../models/Membership';
 import { Types } from 'mongoose';
 import { isBefore, subWeeks } from 'date-fns'; 
 // Define types for query options and response

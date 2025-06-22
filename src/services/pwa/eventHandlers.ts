@@ -1,12 +1,12 @@
 import pushNotificationService from './pushNotificationService';
-import { pushConfig, renderTemplate } from '~/config/push-notification';
+import { pushConfig, renderTemplate } from '../../config/push-notification';
 
 // Event handlers cho các sự kiện trong hệ thống
 
 // Khi appointment được tạo/xác nhận
 export const handleAppointmentConfirmed = async (appointmentId: string) => {
   try {
-    const Appointment = require('~/models/Appointment');
+    const Appointment = require('../models/Appointment');
     const appointment = await Appointment.findById(appointmentId)
       .populate('member_id', 'name email')
       .populate('trainer_id', 'name');
@@ -42,7 +42,7 @@ export const handleAppointmentConfirmed = async (appointmentId: string) => {
 // Khi membership được gia hạn
 export const handleMembershipRenewed = async (membershipId: string) => {
   try {
-    const Membership = require('~/models/Membership');
+    const Membership = require('../models/Membership');
     const membership = await Membership.findById(membershipId)
       .populate('member_id', 'name email')
       .populate('package_id', 'name');
@@ -71,7 +71,7 @@ export const handleMembershipRenewed = async (membershipId: string) => {
 // Khi workout được hoàn thành
 export const handleWorkoutCompleted = async (workoutId: string) => {
   try {
-    const WorkoutSchedule = require('~/models/WorkoutSchedule');
+    const WorkoutSchedule = require('../models/WorkoutSchedule');
     const workout = await WorkoutSchedule.findById(workoutId)
       .populate('member_id', 'name email');
 

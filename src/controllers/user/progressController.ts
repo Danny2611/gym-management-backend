@@ -1,9 +1,9 @@
 // src/controllers/user/progressController.ts
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import progressTrackingService from '~/services/progressTrackingService';
+import progressTrackingService from '../../services/progressTrackingService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 

@@ -1,17 +1,17 @@
 import express from 'express';
-import { authenticateJWT } from '~/middlewares/auth';
-import { memberUpdateValidationRules } from '~/utils/validators/memberValidator';
-import { workoutScheduleValidator, updateWorkoutScheduleStatusValidator,workoutSuggestionValidator } from '~/utils/validators/workoutValidator';
-import { bodyMetricsValidationRules } from '~/utils/validators/progressValidator';
+import { authenticateJWT } from '../../middlewares/auth';
+import { memberUpdateValidationRules } from '../../utils/validators/memberValidator';
+import { workoutScheduleValidator, updateWorkoutScheduleStatusValidator,workoutSuggestionValidator } from '../../utils/validators/workoutValidator';
+import { bodyMetricsValidationRules } from '../../utils/validators/progressValidator';
 
-import memberController from '~/controllers/user/memberController';
-import paymentController from '~/controllers/user/paymentController';
-import membershipController from '~/controllers/user/membershipController';
-import packageController from '~/controllers/user/packageController';
-import appointmentController from '~/controllers/user/appointmentController';
-import transactionController from '~/controllers/user/transactionController';
-import workoutController from '~/controllers/user/workoutController';
-import progressController from '~/controllers/user/progressController';
+import memberController from '../../controllers/user/memberController';
+import paymentController from '../../controllers/user/paymentController';
+import membershipController from '../../controllers/user/membershipController';
+import packageController from '../../controllers/user/packageController';
+import appointmentController from '../../controllers/user/appointmentController';
+import transactionController from '../../controllers/user/transactionController';
+import workoutController from '../../controllers/user/workoutController';
+import progressController from '../../controllers/user/progressController';
 
 const router = express.Router();
 

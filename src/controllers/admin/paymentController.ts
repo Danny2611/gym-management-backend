@@ -1,7 +1,7 @@
 // # Quản lý thanh toán
 // controller/admin/paymentController.ts
 import { Request, Response } from 'express';
-import paymentService from '~/services/admin/paymentService';
+import paymentService from '../../services/admin/paymentService';
 import { Types } from 'mongoose';
 
 interface AuthRequest extends Request {

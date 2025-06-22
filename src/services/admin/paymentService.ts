@@ -1,8 +1,6 @@
-import Payment, { IPayment } from '~/models/Payment';
-import Member from '~/models/Member';
-import Package from '~/models/Package';
+import Payment, { IPayment } from '../../models/Payment';
 import { Types } from 'mongoose';
-import { isBefore, subWeeks } from 'date-fns';
+
 
 // Define types for query options and response
 export interface PaymentQueryOptions {

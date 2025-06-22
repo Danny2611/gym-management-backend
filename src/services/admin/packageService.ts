@@ -1,5 +1,5 @@
-import Package, { IPackage } from '~/models/Package';
-import PackageDetail, { IPackageDetail } from '~/models/PackageDetail';
+import Package, { IPackage } from '../../models/Package';
+import PackageDetail, { IPackageDetail } from '../../models/PackageDetail';
 import { Types } from 'mongoose';
 
 // Define types for query options and response

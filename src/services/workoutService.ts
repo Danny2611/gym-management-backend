@@ -4,7 +4,7 @@ import WorkoutSchedule, { IWorkoutSchedule } from '../models/WorkoutSchedule';
 import { Types } from 'mongoose';
 import llamaService from './llamaService';
 import cron from 'node-cron';
-import { MonthComparison, MonthlyStats, RecentWorkoutLog, WeeklyWorkout,  WorkoutScheduleNextWeek } from '~/types/workoutSchedule';
+import { MonthComparison, MonthlyStats, RecentWorkoutLog, WeeklyWorkout,  WorkoutScheduleNextWeek } from '../types/workoutSchedule';
 export interface WorkoutSuggestionParams {
   muscleGroup: string;
   goal: 'weight_loss' | 'muscle_gain' | 'endurance' | 'strength' | 'flexibility';

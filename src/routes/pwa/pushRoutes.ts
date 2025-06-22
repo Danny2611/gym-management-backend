@@ -1,7 +1,7 @@
 // # Route cho Push Notifications
 import { Router } from 'express';
-import  PushNotificationController  from '~/controllers/pwa/pushNotificationController';
-import { authenticateJWT } from '~/middlewares/auth';
+import  PushNotificationController  from '../../controllers/pwa/pushNotificationController';
+import { authenticateJWT } from '../../middlewares/auth';
 import { validatePushSubscription } from '../../middlewares/validator';
 
 const router = Router();

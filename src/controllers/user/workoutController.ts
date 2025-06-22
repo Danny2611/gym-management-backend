@@ -1,14 +1,11 @@
 // src/controllers/user/workoutController.ts
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import workoutService from '~/services/workoutService';
+import workoutService from '../../services/workoutService';
 import { Types } from 'mongoose';
-import { MonthComparison, WeeklyWorkout } from '~/types/workoutSchedule';
+import { MonthComparison, WeeklyWorkout } from '../../types/workoutSchedule';
+import { AuthRequest } from '../../types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
 
 export const getWorkoutSuggestions = async (req: AuthRequest, res: Response): Promise<void> => {
   try {

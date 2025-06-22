@@ -1,7 +1,7 @@
 // # Quản lý PT
 // controllers/admin/trainerController.ts
 import { Request, Response } from 'express';
-import trainerService from '~/services/admin/trainerService';
+import trainerService from '../../services/admin/trainerService';
 import { Types } from 'mongoose';
 
 interface AuthRequest extends Request {

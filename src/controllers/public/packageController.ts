@@ -1,8 +1,8 @@
 // src/controller/public/packaController.ts
 import { Request, Response } from 'express';
-import Package from '~/models/Package';
-import PackageDetail from '~/models/PackageDetail';
-import Promotion from '~/models/Promotion';
+import Package from '../../models/Package';
+import PackageDetail from '../../models/PackageDetail';
+import Promotion from '../../models/Promotion';
 import mongoose from 'mongoose';
 
 export const getPackageById = async (req: Request, res: Response): Promise<void> => {

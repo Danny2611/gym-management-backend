@@ -1,7 +1,7 @@
 // # Quản lý hội viên
 // controller/admin/memberController.ts
 import { Request, Response } from 'express';
-import memberService from '~/services/admin/memberService';
+import memberService from '../../services/admin/memberService';
 import { Types } from 'mongoose';
 
 interface AuthRequest extends Request {

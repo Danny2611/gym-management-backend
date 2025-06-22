@@ -1,6 +1,6 @@
 // src/controller/public/promotionController.ts
 import { Request, Response } from 'express';
-import promotionService from '~/services/promotionService';
+import promotionService from '../../services/promotionService';
 
 export const getAllActivePromotions= async(req: Request, res: Response): Promise<void> =>{
     try{

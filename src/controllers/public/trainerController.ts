@@ -1,6 +1,6 @@
 // src/controller/public/trainerController
 import { Request, Response } from 'express';
-import Trainer from '~/models/Trainer';
+import Trainer from '../../models/Trainer';
 
 // Lấy danh sách huấn luyện viên
 export const getTrainers = async (req: Request, res: Response): Promise<void> => {

@@ -1,20 +1,19 @@
 // routes/adminRoutes.ts
 import express from 'express';
-import { authenticateJWT } from '~/middlewares/auth';
+import { authenticateJWT } from '../../middlewares/auth';
 
 
-import memberController from '~/controllers/admin/memberController';
-import membershipController from '~/controllers/admin/membershipController';
-import packageController from '~/controllers/admin/packageController';
-import trainerController from '~/controllers/admin/trainerController'; 
-import appointmentController from '~/controllers/admin/appointmentController'; 
-import promotionController from '~/controllers/admin/promotionController';
-import paymentController from '~/controllers/admin/paymentController';
-import reportController from '~/controllers/admin/reportController';
-import memberReportController from '~/controllers/admin/reports/memberReportController';
-import revenueReportController from '~/controllers/admin/reports/revenueReportController';
+import memberController from '../../controllers/admin/memberController';
+import membershipController from '../../controllers/admin/membershipController';
+import packageController from '../../controllers/admin/packageController';
+import trainerController from '../../controllers/admin/trainerController'; 
+import appointmentController from '../../controllers/admin/appointmentController'; 
+import promotionController from '../../controllers/admin/promotionController';
+import paymentController from '../../controllers/admin/paymentController';
+import reportController from '../../controllers/admin/reportController';
+import memberReportController from '../../controllers/admin/reports/memberReportController';
+import revenueReportController from '../../controllers/admin/reports/revenueReportController';
 
-import notificationService from '~/services/pwa/NotificationService';
 const router = express.Router();
 
 // All these routes require authentication

@@ -1,6 +1,6 @@
 // # Quản lý báo cáo, thống kê
 import { Request, Response } from 'express';
-import reportService from '~/services/admin/reportService';
+import reportService from '../../services/admin/reportService';
 
 interface AuthRequest extends Request {
   userId?: string;

@@ -2,8 +2,8 @@
 import { Request, Response, } from 'express';
 import asyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
-import Member from '~/models/Member';
-import { sendNewPasswordEmail } from '~/services/emailService';
+import Member from '../../models/Member';
+import { sendNewPasswordEmail } from '../../services/emailService';
 
 export const forgotPassword = asyncHandler(async (req: Request, res: Response) => {
     const { email } = req.body;

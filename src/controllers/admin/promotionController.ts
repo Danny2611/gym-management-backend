@@ -2,7 +2,7 @@
 // # Quản lý chương trình khuyến mãi
 // controller/admin/promotionController.ts
 import { Request, Response } from 'express';
-import promotionService from '~/services/admin/promotionService';
+import promotionService from '../../services/admin/promotionService';
 import { Types } from 'mongoose';
 
 interface AuthRequest extends Request {

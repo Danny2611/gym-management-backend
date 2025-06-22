@@ -1,9 +1,9 @@
 // # Quản lý Push Notifications
 //controller/pwa/pushNotificationController
 import { Request, Response } from 'express';
-import pushNotificationService from '~/services/pwa/pushNotificationService';
-import { pushConfig } from '~/config/push-notification';
-import  Notification  from '~/models/Notification';
+import pushNotificationService from '../../services/pwa/pushNotificationService';
+import { pushConfig } from '../../config/push-notification';
+import  Notification  from '../../models/Notification';
 
 interface AuthRequest extends Request {
   userId?: string;

@@ -1,7 +1,7 @@
 // # Validate dữ liệu hội viên
 import { body, validationResult, ValidationChain } from 'express-validator';
 import { Request, Response, NextFunction } from 'express';
-import Member from '~/models/Member';
+import Member from '../../models/Member';
 
 /**
  * Validation rules for member update

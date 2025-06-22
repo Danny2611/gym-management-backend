@@ -1,5 +1,5 @@
-import { BlogCategory, IBlogCategory } from '~/models/BlogCategory';
-import { BlogCategoryResponse } from '~/types/blog';
+import { BlogCategory, IBlogCategory } from '../models/BlogCategory';
+
 
 /**
  * Lấy toàn bộ danh mục blog

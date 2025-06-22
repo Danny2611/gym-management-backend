@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { BlogCategory } from '~/models/BlogCategory';
-import  blogCategoryService from '~/services/blogCategoryService';
+import  blogCategoryService from '../../services/blogCategoryService';
 
 export const getAllBlogCategories = async (req: Request, res: Response) => {
   try {

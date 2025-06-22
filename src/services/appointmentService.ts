@@ -6,7 +6,7 @@ import Trainer, { ITrainer, ISchedule } from '../models/Trainer';
 import { startOfMonth, endOfMonth } from 'date-fns';
 import cron from 'node-cron';
 import { Types } from 'mongoose';
-import { UpcomingAppointment } from '~/types/appointment';
+import { UpcomingAppointment } from '../types/appointment';
 
 
 interface MemberScheduleFilters {

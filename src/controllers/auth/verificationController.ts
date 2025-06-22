@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { verifyUserOTP } from '~/services/authService';
-import Member from '~/models/Member';
-import { sendOTPEmail } from '~/services/emailService';
+import { verifyUserOTP } from '../../services/authService';
+import Member from '../../models/Member';
+import { sendOTPEmail } from '../../services/emailService';
 
 export const verifyOTP = asyncHandler(async (req: Request, res: Response) => {
   const { email, otp } = req.body;

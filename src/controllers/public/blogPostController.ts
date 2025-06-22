@@ -1,6 +1,6 @@
 // src/controller/public/blogPostController.ts
 import { Request, Response } from 'express';
-import blogService from '~/services/blogPostService';
+import blogService from '../../services/blogPostService';
 
 export const getLatestPosts = async (req: Request, res: Response): Promise<void> => {
   try {

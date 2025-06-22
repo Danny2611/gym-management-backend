@@ -1,6 +1,6 @@
 // controller/admin/appointmentController.ts
 import { Request, Response } from 'express';
-import appointmentService from '~/services/admin/appoinmentService';
+import appointmentService from '../../services/admin/appoinmentService';
 import { Types } from 'mongoose';
 
 interface AuthRequest extends Request {

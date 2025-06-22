@@ -1,6 +1,6 @@
 import express from 'express';
-import { authenticateJWT } from '~/middlewares/auth';
-import { createMoMoPayment, momoIpnCallback, momoRedirectCallback, getPaymentById } from '~/controllers/user/paymentController';
+import { authenticateJWT } from '../../middlewares/auth';
+import { createMoMoPayment, momoIpnCallback, momoRedirectCallback, getPaymentById } from '../../controllers/user/paymentController';
 const router = express.Router();
 
 // All these routes require authentication

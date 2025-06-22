@@ -2,11 +2,11 @@
 // src/routes/api/publicRoutes.ts
 import express from 'express';
 
-import packageController from '~/controllers/public/packageController';
-import trainerController from '~/controllers/public/trainerController';
-import { getAllActivePromotions}   from '~/controllers/public/promotionController';
-import {getPostBySlug,getLatestPosts,getPostsByTag,getPostsByCategory,getAllPosts,   getFeaturedPosts} from '~/controllers/public/blogPostController';
-import {getAllBlogCategories, getCategoryBySlug} from '~/controllers/public/blogCategoryController';
+import packageController from '../../controllers/public/packageController';
+import trainerController from '../../controllers/public/trainerController';
+import { getAllActivePromotions}   from '../../controllers/public/promotionController';
+import {getPostBySlug,getLatestPosts,getPostsByTag,getPostsByCategory,getAllPosts,   getFeaturedPosts} from '../../controllers/public/blogPostController';
+import {getAllBlogCategories, getCategoryBySlug} from '../../controllers/public/blogCategoryController';
 const router = express.Router();
 
 // 1. Routes cho Package (public - không cần auth)

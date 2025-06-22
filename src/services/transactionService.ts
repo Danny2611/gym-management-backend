@@ -1,5 +1,5 @@
 // services/transactionService.ts
-import { RecentTransactionDTO } from '~/types/transaction';
+import { RecentTransactionDTO } from '../types/transaction';
 import Payment, { IPayment } from '../models/Payment';
 import { Types } from 'mongoose';
 

@@ -1,18 +1,18 @@
 // routes/auth/authRoutes.ts
 import express from 'express';
 import passport from 'passport';
-import { register, login, refreshToken } from '~/controllers/auth/authController';
-import { forgotPassword, changePassword, validateCurrentPassword } from '~/controllers/auth/passwordController';
-import { verifyOTP, resendOTP } from '~/controllers/auth/verificationController';
-import { googleCallback, facebookCallback } from '~/controllers/auth/socialAuthController';
-import { authenticateJWT, authenticateRefreshToken } from '~/middlewares/auth';
+import { register, login, refreshToken } from '../../controllers/auth/authController';
+import { forgotPassword, changePassword, validateCurrentPassword } from '../../controllers/auth/passwordController';
+import { verifyOTP, resendOTP } from '../../controllers/auth/verificationController';
+import { googleCallback, facebookCallback } from '../../controllers/auth/socialAuthController';
+import { authenticateJWT, authenticateRefreshToken } from '../../middlewares/auth';
 import { 
   registerValidator, 
   loginValidator, 
   forgotPasswordValidator,
   changePasswordValidator,
   verifyOTPValidator
-} from '~/utils/validators/authValidator';
+} from '../../utils/validators/authValidator';
 
 const router = express.Router();
 
@@ -93,18 +93,18 @@ export default router;
 
 // import express from 'express';
 // import passport from 'passport';
-// import { register, login, refreshToken } from '~/controllers/auth/authController';
-// import { forgotPassword, changePassword } from '~/controllers/auth/passwordController';
-// import { verifyOTP, resendOTP } from '~/controllers/auth/verificationController';
-// import { googleCallback, facebookCallback } from '~/controllers/auth/socialAuthController';
-// import { authenticateJWT, authenticateRefreshToken } from '~/middlewares/auth';
+// import { register, login, refreshToken } from '../../controllers/auth/authController';
+// import { forgotPassword, changePassword } from '../../controllers/auth/passwordController';
+// import { verifyOTP, resendOTP } from '../../controllers/auth/verificationController';
+// import { googleCallback, facebookCallback } from '../../controllers/auth/socialAuthController';
+// import { authenticateJWT, authenticateRefreshToken } from '../../middlewares/auth';
 // import { 
 //   registerValidator, 
 //   loginValidator, 
 //   forgotPasswordValidator,
 //   changePasswordValidator,
 //   verifyOTPValidator
-// } from '~/utils/validators/authValidator';
+// } from '../../utils/validators/authValidator';
 
 // const router = express.Router();
 

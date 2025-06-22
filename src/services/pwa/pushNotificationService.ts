@@ -1,7 +1,7 @@
 //services/pwa/pushNotificationService
 import webpush from 'web-push';
-import  PushSubscription  from '~/models/PushSubscription';
-import  Notification  from '~/models/Notification';
+import  PushSubscription  from '../../models/PushSubscription';
+import  Notification  from '../../models/Notification';
 import { Types } from 'mongoose';
 // Lưu subscription của user
 const saveSubscription = async (memberId: string, subscription: any, deviceInfo?: any) => {

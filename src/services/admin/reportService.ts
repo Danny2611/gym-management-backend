@@ -1,7 +1,7 @@
-  import Member, { IMember } from '~/models/Member';
-  import Membership, { IMembership } from '~/models/Membership';
-  import Package, { IPackage } from '~/models/Package';
-  import Payment, { IPayment } from '~/models/Payment';
+  import Member, { IMember } from '../../models/Member';
+  import Membership, { IMembership } from '../../models/Membership';
+ 
+  import Payment, { IPayment } from '../../models/Payment';
 
 
   import { Types } from 'mongoose';

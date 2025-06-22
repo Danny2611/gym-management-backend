@@ -1,7 +1,7 @@
-import Member, { IMember } from '~/models/Member';
-import Membership, { IMembership } from '~/models/Membership';
-import Package, { IPackage } from '~/models/Package';
-import Payment, { IPayment } from '~/models/Payment';
+
+import Membership from '../../../models/Membership';
+
+import Payment from '../../../models/Payment';
 
 import { Types } from 'mongoose';
 import ExcelJS from 'exceljs';

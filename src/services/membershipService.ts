@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 import Membership from '../models/Membership';
 import Member from '../models/Member';
 import cron from 'node-cron';
-import { MembershipDetailsResponse } from '~/types/membership';
+import { MembershipDetailsResponse } from '../types/membership';
 
 //user
 

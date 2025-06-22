@@ -1,6 +1,6 @@
 // controller/admin/memberReportController.ts
 import { Request, Response } from 'express';
-import memberReportService from '~/services/admin/reports/memberReportService';
+import memberReportService from '../../../services/admin/reports/memberReportService';
 import { Types } from 'mongoose';
 import path from 'path';
 import fs from 'fs';

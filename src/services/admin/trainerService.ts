@@ -1,4 +1,4 @@
-import Trainer, { ITrainer, ISchedule, IWorkingHours } from '~/models/Trainer';
+import Trainer, { ITrainer, ISchedule, IWorkingHours } from '../../models/Trainer';
 import { Types } from 'mongoose';
 
 // Define types for query options and response

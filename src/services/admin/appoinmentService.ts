@@ -1,6 +1,6 @@
-import Appointment, { IAppointment } from '~/models/Appointment';
-import Member from '~/models/Member';
-import Trainer from '~/models/Trainer';
+import Appointment, { IAppointment } from '../../models/Appointment';
+import Member from '../../models/Member';
+import Trainer from '../../models/Trainer';
 import { Types } from 'mongoose';
 
 // Define types for query options and response

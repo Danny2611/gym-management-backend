@@ -1,7 +1,7 @@
 // services/blogService.ts
-import { BlogPostResponse, BlogAuthor } from '~/types/blog';
+import { BlogPostResponse, BlogAuthor } from '../types/blog';
 import { BlogPost, IBlogPost } from '../models/BlogPost';
-import { BlogCategory } from '~/models/BlogCategory';
+import { BlogCategory } from '../models/BlogCategory';
 
 import { Types } from 'mongoose';
 
