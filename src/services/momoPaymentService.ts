@@ -40,8 +40,8 @@ class MoMoPaymentService {
       partnerCode: process.env.MOMO_PARTNER_CODE || '',
       accessKey: process.env.MOMO_ACCESS_KEY || '',
       secretKey: process.env.MOMO_SECRET_KEY || '',
-      redirectUrl: process.env.MOMO_REDIRECT_URL || 'https://1a2c-116-98-109-161.ngrok-free.app/api/user/payment/momo/callback',
-      ipnUrl: process.env.MOMO_IPN_URL || 'https://1a2c-116-98-109-161.ngrok-free.app/api/user/momo/ipn',
+      redirectUrl: process.env.MOMO_REDIRECT_URL || 'https://gym-management-backend-production-c5e0.up.railway.app/api/user/payment/momo/callback',
+      ipnUrl: process.env.MOMO_IPN_URL || 'https://gym-management-backend-production-c5e0.up.railway.app/api/user/momo/ipn',
       requestType: 'payWithMethod'
     };
 

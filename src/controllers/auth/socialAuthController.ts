@@ -6,7 +6,7 @@ import { generateAccessToken, generateRefreshToken } from '../../config/jwt';
 
 export const googleCallback = asyncHandler(async (req: Request, res: Response) => {
     const user = req.user as any;
-    const callbackUrl = req.query.callbackUrl as string || `${process.env.FRONTEND_URL || 'http://localhost:3000'}/oauth/callback`;
+    const callbackUrl = req.query.callbackUrl as string || `${process.env.FRONTEND_URL || 'https://gym-management-fronted-2qoa.vercel.app'}/oauth/callback`;
     
     if (!user) {
       // Redirect về client với thông báo lỗi
@@ -34,7 +34,7 @@ export const googleCallback = asyncHandler(async (req: Request, res: Response) =
 
 export const facebookCallback = asyncHandler(async (req: Request, res: Response) => {
     const user = req.user as any;
-    const callbackUrl = req.query.callbackUrl as string || `${process.env.FRONTEND_URL || 'http://localhost:3000'}/oauth/callback`;
+    const callbackUrl = req.query.callbackUrl as string || `${process.env.FRONTEND_URL || 'https://gym-management-fronted-2qoa.vercel.app'}/oauth/callback`;
     
     if (!user) {
       // Redirect về client với thông báo lỗi
