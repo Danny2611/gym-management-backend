@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { JwtPayload } from '~/types/auth';
+import { JwtPayload } from '../types/auth';
 
 dotenv.config();
 
