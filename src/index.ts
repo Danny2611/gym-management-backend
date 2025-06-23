@@ -1,14 +1,11 @@
 
-
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import passport from 'passport';
 import helmet from 'helmet';
-import appConfig from './config/app';
 import compression from 'compression'; // Nén dữ liệu HTTP Response để tăng tốc độ tải trang
-import rateLimit from 'express-rate-limit'; // Chặn spam request (DDoS Protection)
-import session from 'express-session'; // Quản lý phiên đăng nhập (Session)
+
 // config
 import connectDB  from './config/db';
 import corsConfig from './config/cors';

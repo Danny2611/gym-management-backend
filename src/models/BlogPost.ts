@@ -11,6 +11,7 @@ export interface IBlogPost extends Document {
   excerpt: string;
   content: string;
   coverImage: string;
+  coverImagePublicId: string;
   publishDate: Date;
   readTime: number;
   author?: mongoose.Types.ObjectId | ITrainer;
@@ -28,6 +29,7 @@ const blogPostSchema: Schema = new Schema({
   excerpt: { type: String, required: true },
   content: { type: String, required: true },
   coverImage: { type: String, required: true },
+  coverImagePublicId: { type: String },
   publishDate: { type: Date, default: Date.now },
   readTime: { type: Number, required: true },
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'Trainer' },

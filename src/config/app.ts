@@ -9,8 +9,8 @@ const appConfig = {
   env: process.env.NODE_ENV || 'development',
   debug: process.env.NODE_ENV !== 'production',
   port: parseInt(process.env.PORT || '5000', 10),
-  host: process.env.HOST || 'localhost',
-  url: process.env.APP_URL || 'http://localhost:5000',
+  host: process.env.HOST || '0.0.0.0',
+  url: process.env.APP_URL || 'https://gym-management-backend-production-c5e0.up.railway.app',
   apiPrefix: process.env.API_PREFIX || '/api',
   apiVersion: process.env.API_VERSION || 'v1',
 };

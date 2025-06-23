@@ -9,26 +9,20 @@ dotenv.config();
 // Danh sách origin được phép truy cập
 const whitelist = [
   'http://localhost:3000', 
-   'http://localhost:4173',
-    'http://localhost:573',
-  // URL của ứng dụng frontend
-  'https://momo.vn',  // Thêm domain của MoMo
-  'https://payment.momo.vn',  // Thêm nếu cần thiết
-  'https://test-payment.momo.vn', // Nếu dùng môi trường test của MoMo
-  process.env.FRONTEND_URL_PROD ||'http://localhost:4173'
+  'http://localhost:4173',
+  'https://momo.vn',
+  'https://payment.momo.vn',
+  'https://test-payment.momo.vn',
+  'https://gym-management-fronted-2qoa.vercel.app', 
+  process.env.FRONTEND_URL_PROD || 'http://localhost:4173'
 ];
+
 
 // Cấu hình CORS
 const corsOptions: CorsOptions = {
-  // origin: (origin, callback) => {
-  //   if (!origin || whitelist.indexOf(origin) !== -1) {
-  //     callback(null, true);
-  //   } else {
-  //     callback(new Error('Not allowed by CORS'));
-  //   }
-  // },
+
     origin: (origin, callback) => {
-    // Cho phép requests không có origin (như Postman, mobile apps)
+
     if (!origin) return callback(null, true);
     
     if (whitelist.includes(origin)) {

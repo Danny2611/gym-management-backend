@@ -16,6 +16,7 @@ export interface ISchedule {
 
 export interface ITrainer extends Document {
   image?: string;
+  imagePublicId?: String,
   name: string;
   bio?: string;
   specialization?: string;
@@ -45,6 +46,7 @@ const scheduleSchema: Schema = new Schema({
 
 const trainerSchema: Schema = new Schema({
   image: String,
+  imagePublicId: String,
   name: { type: String, required: true },
   bio: String,
   specialization: String,

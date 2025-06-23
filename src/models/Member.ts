@@ -5,6 +5,7 @@ export interface IMember extends Document {
   _id: Types.ObjectId;
   name: string;
   avatar?: string;
+  avatarPublicId: string, 
   email: string;
   password: string;
   gender?: 'male' | 'female' | 'other';
@@ -24,6 +25,7 @@ export interface IMember extends Document {
 const memberSchema: Schema = new Schema({
   name: { type: String, required: true },
   avatar: String,
+  avatarPublicId: String, 
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   gender: { type: String, enum: ['male', 'female', 'other'] },

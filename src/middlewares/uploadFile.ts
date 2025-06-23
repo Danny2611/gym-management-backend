@@ -1,38 +1,31 @@
-// # Xử lý upload file
+// src/middlewares/upload.ts
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
-import { Request } from 'express';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
-// Define storage configuration for multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // Define the upload directory
-    const uploadDir = 'public/uploads/avatars';
-    
-    // Create directory if it doesn't exist
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-    
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    // Create unique filename: userId-timestamp-originalname
+import { Request } from 'express';
+import cloudinary from '~/config/cloudinary';
+
+// Multer Cloudinary Storage config
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req: Request, file: Express.Multer.File) => {
     const userId = (req as any).userId || 'guest';
-    const timestamp = Date.now();
-    const fileExt = path.extname(file.originalname);
-    const fileName = `${userId}-${timestamp}${fileExt}`;
-    
-    cb(null, fileName);
-  }
+    return {
+      folder: 'gym-management/avatars',
+      public_id: `${userId}-${Date.now()}`,
+      allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+      transformation: [{ width: 500, height: 500, crop: 'limit' }],
+    };
+  },
 });
 
-// Define file filter to only allow image uploads
-const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-  // Accept only image files
+// File filter giống như trước
+const fileFilter = (
+  req: Request,
+  file: Express.Multer.File,
+  cb: multer.FileFilterCallback
+) => {
   const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  
   if (allowedMimeTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
@@ -40,31 +33,26 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilt
   }
 };
 
-// Configure multer with limits
+// Cấu hình multer
 const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB max file size
-  }
+    fileSize: 5 * 1024 * 1024, // 5MB
+  },
 });
 
-// Middleware for single file upload
+// Middleware giống cũ
 export const uploadFile = upload.single('avatar');
+export const uploadMultipleFiles = upload.array('images', 5);
 
-// Middleware for multiple file upload (if needed)
-export const uploadMultipleFiles = upload.array('images', 5); // max 5 files
-
-// Custom middleware to handle file deletion
-export const deleteFile = (filePath: string): boolean => {
+// Hàm xóa ảnh trên Cloudinary
+export const deleteCloudinaryFile = async (publicId: string): Promise<boolean> => {
   try {
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-      return true;
-    }
-    return false;
+    const result = await cloudinary.uploader.destroy(publicId);
+    return result.result === 'ok';
   } catch (error) {
-    console.error('Lỗi khi xóa file:', error);
+    console.error('Lỗi khi xóa file Cloudinary:', error);
     return false;
   }
 };

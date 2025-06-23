@@ -2,13 +2,80 @@
 // src/controller/user/memberController
 import { Request, Response } from 'express';
 import Member from '../../models/Member';
-import { uploadFile,deleteFile } from '../../middlewares/uploadFile';
+import { uploadFile } from '../../middlewares/uploadFile';
 import { validateMemberUpdate } from '../../utils/validators/memberValidator';
+import { AuthRequest } from '../../types/auth';
+import { deleteCloudinaryFile } from '../../middlewares/uploadFile';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole? :string
-}
+export const updateAvatar = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.userId;
+    if (!userId) {
+      res.status(401).json({
+        success: false,
+        message: 'Không tìm thấy thông tin người dùng'
+      });
+      return;
+    }
+
+    uploadFile(req, res, async (err) => {
+      if (err) {
+        console.error('Upload lỗi:', err);
+        res.status(400).json({
+          success: false,
+          message: 'Lỗi khi tải lên avatar'
+        });
+        return;
+      }
+
+      if (!req.file) {
+        res.status(400).json({
+          success: false,
+          message: 'Không tìm thấy file avatar'
+        });
+        return;
+      }
+
+      const avatarUrl = (req.file as any).path;
+      const publicId = (req.file as any).filename;
+
+      const member = await Member.findById(userId);
+      if (!member) {
+        res.status(404).json({
+          success: false,
+          message: 'Không tìm thấy thông tin hội viên'
+        });
+        return;
+      }
+
+      // Xóa ảnh cũ nếu có
+      if (member.avatarPublicId) {
+        await deleteCloudinaryFile(member.avatarPublicId) ;
+      }
+
+      // Cập nhật avatar mới
+      member.avatar = avatarUrl;
+      member.avatarPublicId = publicId;
+      member.updated_at = new Date();
+      await member.save();
+
+      res.status(200).json({
+        success: true,
+        message: 'Cập nhật avatar thành công',
+        data: {
+          avatar: avatarUrl
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Lỗi khi cập nhật avatar:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Lỗi server khi cập nhật avatar'
+    });
+  }
+};
+
 
 /**
  * Get the current user's profile
@@ -147,74 +214,6 @@ export const updateProfile = async (req: AuthRequest, res: Response): Promise<vo
   }
 };
 
-/**
- * Update profile avatar
- */
-export const updateAvatar = async (req: AuthRequest, res: Response): Promise<void> => {
-  try {
-    const userId = req.userId;
-    if (!userId) {
-      res.status(401).json({
-        success: false,
-        message: 'Không tìm thấy thông tin người dùng'
-      });
-      return;
-    }
-
-    // Handle file upload (assuming you have a middleware like multer)
-    uploadFile(req, res, async (err) => {
-      if (err) {
-        res.status(400).json({
-          success: false,
-          message: 'Lỗi khi tải lên avatar'
-        });
-        return;
-      }
-
-      if (!req.file) {
-        res.status(400).json({
-          success: false,
-          message: 'Không tìm thấy file avatar'
-        });
-        return;
-      }
-
-      // Get file path
-      const avatarPath = req.file.path;
-      // const avatarUrl = `/uploads/avatars/${req.file.filename}`;
-
-      // Update user's avatar
-      const member = await Member.findById(userId);
-      if (!member) {
-        res.status(404).json({
-          success: false,
-          message: 'Không tìm thấy thông tin hội viên'
-        });
-        return;
-      }
-      if (member.avatar) {
-        deleteFile(member.avatar);
-      }
-      member.avatar = avatarPath;
-      member.updated_at = new Date();
-      await member.save();
-
-      res.status(200).json({
-        success: true,
-        message: 'Cập nhật avatar thành công',
-        data: {
-          avatar: avatarPath
-        }
-      });
-    });
-  } catch (error) {
-    console.error('Lỗi khi cập nhật avatar:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Lỗi server khi cập nhật avatar'
-    });
-  }
-};
 
 /**
  * Change email (requires verification)

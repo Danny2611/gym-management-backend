@@ -3,11 +3,8 @@
 import { Request, Response } from 'express';
 import trainerService from '../../services/admin/trainerService';
 import { Types } from 'mongoose';
+import { AuthRequest } from '../../types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
 
 // Get all trainers with pagination, filtering and sorting
 export const getAllTrainers = async (req: AuthRequest, res: Response): Promise<void> => {
