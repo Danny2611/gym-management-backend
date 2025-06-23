@@ -56,7 +56,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "http://localhost:5000", "data:", "blob:"], // allow images
+      imgSrc: ["'self'", "https://gym-management-backend-production-c5e0.up.railway.app", "data:", "blob:"], // allow images
       scriptSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
     },
