@@ -21,7 +21,7 @@ import { initializePushService } from './config/push-notification';
 import notificationService from './services/pwa/NotificationService';
 
 //middleware
-import {errorHandler} from './middlewares/errorHandler';
+// import {errorHandler} from './middlewares/errorHandler';
 
 // routes
 import authRoutes from './routes/api/authRoutes';
@@ -52,17 +52,21 @@ notificationService.initializeScheduler(); // ✅ Khởi chạy scheduler
 
 
 app.use(express.json());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "https://gym-management-backend-production-c5e0.up.railway.app", "data:", "blob:"], // allow images
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-    },
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       imgSrc: ["'self'", "https://gym-management-backend-production-c5e0.up.railway.app", "data:", "blob:"], // allow images
+//       scriptSrc: ["'self'"],
+//       styleSrc: ["'self'", "'unsafe-inline'"],
+//     },
+//   })
+// );
 
+app.use(cors({
+  origin: "https://gym-management-fronted-4jgg.vercel.app", // tên miền frontend
+  credentials: true // nếu bạn có dùng cookie, session
+}));
 app.use(passport.initialize());
 // app.use(cors(corsConfig.current));
 
@@ -95,5 +99,5 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/public", publicRoutes);
 app.use("/api/pwa", pwaRoutes);
 
-app.use(errorHandler);
+// app.use(errorHandler);
 export default app;
