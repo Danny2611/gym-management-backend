@@ -84,7 +84,7 @@ class NotificationService {
     });
 
     // Kiểm tra workout reminder - mỗi 30 phút
-    cron.schedule('*/2 * * * *', async () => {
+    cron.schedule('*/30 * * * *', async () => {
       console.log('💪 Running workout reminder check...');
       await this.checkWorkoutReminders();
     });

@@ -14,7 +14,7 @@ const whitelist = [
   'https://payment.momo.vn',
   'https://test-payment.momo.vn',
   'https://gym-management-fronted-2qoa.vercel.app', 
-  process.env.FRONTEND_URL || 'http://localhost:4173'
+  process.env.FRONTEND_URL || 'https://gym-management-fronted-2qoa.vercel.app'
 ];
 
 

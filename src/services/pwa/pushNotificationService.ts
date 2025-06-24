@@ -60,6 +60,7 @@ const sendToUser = async (
 };
 
 // Gửi push notification thực tế
+// Phần sendPushNotification đã được cập nhật
 const sendPushNotification = async (notificationId: string) => {
   try {
     const notification = await Notification.findById(notificationId).populate('member_id');
@@ -77,9 +78,11 @@ const sendPushNotification = async (notificationId: string) => {
       return;
     }
 
+    // ✅ Payload structure phù hợp với service worker
     const payload = {
       title: notification.title,
-      body: notification.message,
+      body: notification.message, // ← Đây là trường service worker sẽ đọc
+      message: notification.message, // ← Backup field
       icon: '/icons/icon-192x192.png',
       badge: '/icons/icon-96x96.png',
       data: {
@@ -94,36 +97,38 @@ const sendPushNotification = async (notificationId: string) => {
       ]
     };
 
+    console.log('📤 Sending payload:', JSON.stringify(payload, null, 2));
+
     const results = await Promise.allSettled(
-  subscriptions.map(async (sub, index) => {
-    try {
-      await webpush.sendNotification(
-        {
-          endpoint: sub.endpoint,
-          keys: sub.keys
-        },
-        JSON.stringify(payload)
-      );
-      return { status: 'fulfilled' };
-    } catch (error: any) {
-      console.error(`❌ Failed to send to subscription ${index}:`, error);
+      subscriptions.map(async (sub, index) => {
+        try {
+          const result = await webpush.sendNotification(
+            {
+              endpoint: sub.endpoint,
+              keys: sub.keys
+            },
+            JSON.stringify(payload) // ← Đảm bảo stringify
+          );
+          
+          console.log(`✅ Sent to subscription ${index}:`, result);
+          return { status: 'fulfilled' };
+        } catch (error: any) {
+          console.error(`❌ Failed to send to subscription ${index}:`, error);
 
-      // Nếu bị thu hồi (410) hoặc không tồn tại (404), thì xóa subscription
-      if (error.statusCode === 410 || error.statusCode === 404) {
-        console.warn(`🗑️ Subscription revoked or not found. Removing: ${sub.endpoint}`);
-        await PushSubscription.deleteOne({ endpoint: sub.endpoint });
-      } else {
-        // Các lỗi khác thì đánh dấu là inactive (hoặc xử lý tùy ý)
-        sub.is_active = false;
-        await sub.save();
-      }
+          // Nếu bị thu hồi (410) hoặc không tồn tại (404), thì xóa subscription
+          if (error.statusCode === 410 || error.statusCode === 404) {
+            console.warn(`🗑️ Subscription revoked or not found. Removing: ${sub.endpoint}`);
+            await PushSubscription.deleteOne({ endpoint: sub.endpoint });
+          } else {
+            // Các lỗi khác thì đánh dấu là inactive
+            sub.is_active = false;
+            await sub.save();
+          }
 
-      // Dùng throw để kết quả allSettled nhận biết là thất bại
-      throw error;
-    }
-  })
-);
-
+          throw error;
+        }
+      })
+    );
 
     let successCount = 0;
     let failedCount = 0;
@@ -134,10 +139,6 @@ const sendPushNotification = async (notificationId: string) => {
       } else {
         failedCount++;
         console.error(`Failed to send to subscription ${index}:`, result.reason);
-        if (result.reason?.statusCode === 410) {
-          subscriptions[index].is_active = false;
-          subscriptions[index].save();
-        }
       }
     });
 
@@ -145,7 +146,7 @@ const sendPushNotification = async (notificationId: string) => {
     notification.sent_at = new Date();
     await notification.save();
 
-    console.log(`Notification sent: ${successCount} success, ${failedCount} failed`);
+    console.log(`📊 Notification sent: ${successCount} success, ${failedCount} failed`);
     return { successCount, failedCount };
   } catch (error) {
     console.error('Error in sendPushNotification:', error);
@@ -157,15 +158,15 @@ const sendPushNotification = async (notificationId: string) => {
 const getNotificationUrl = (type: string, data?: any): string => {
   switch (type) {
     case 'membership':
-      return '/dashboard/membership';
+      return '/user/my-packages';
     case 'appointment':
-      return `/dashboard/appointments/${data?.appointmentId || ''}`;
+      return `/user/my-schedule`;
     case 'promotion':
-      return `/packages?promo=${data?.promoId || ''}`;
+      return `/user/packages`;
     case 'workout':
-      return '/dashboard/workout-schedule';
+      return '/user/my-schedule';
     default:
-      return '/dashboard';
+      return 'user/dashboard';
   }
 };
 

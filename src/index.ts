@@ -65,7 +65,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(cors(corsConfig.current));
-app.use(errorHandler);
+
 app.use(cookieParser());
  app.use(compression());
 
@@ -94,4 +94,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/public", publicRoutes);
 app.use("/api/pwa", pwaRoutes);
+
+app.use(errorHandler);
 export default app;
