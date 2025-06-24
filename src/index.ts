@@ -8,7 +8,7 @@ import compression from 'compression'; // Nén dữ liệu HTTP Response để t
 
 // config
 import connectDB  from './config/db';
-import corsConfig from './config/cors';
+// import corsConfig from './config/cors';
 import './config/passport'; // Import cấu hình OAuth
 import cookieParser from 'cookie-parser'; // Đọc và xử lý cookie từ request
 
@@ -64,7 +64,7 @@ app.use(
 );
 
 app.use(passport.initialize());
-app.use(cors(corsConfig.current));
+// app.use(cors(corsConfig.current));
 
 app.use(cookieParser());
  app.use(compression());
