@@ -63,6 +63,22 @@ app.use(express.json());
 //   })
 // );
 
+// const allowedOrigins = [
+//   "https://gym-management-fronted-4jgg.vercel.app",
+  
+//   "http://localhost:5173"
+// ];
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// }));
 app.use(cors({
   origin: "https://gym-management-fronted-4jgg.vercel.app", // tên miền frontend
   credentials: true // nếu bạn có dùng cookie, session

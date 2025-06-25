@@ -1,4 +1,4 @@
-// # Xử lý thanh toán MoMo - Đã sửa lỗi
+// # Xử lý thanh toán
 import axios from 'axios';
 import * as crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
@@ -62,15 +62,14 @@ class MoMoPaymentService {
       memberId: data.memberId
     })).toString('base64');
 
-    // Tạo signature cho MoMo - đảm bảo thứ tự đúng
+    // Tạo signature cho MoMo
     const rawSignature = `accessKey=${this.config.accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${this.config.ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${this.config.partnerCode}&redirectUrl=${this.config.redirectUrl}&requestId=${requestId}&requestType=${this.config.requestType}`;
-
     const signature = crypto
-        .createHmac('sha256', this.config.secretKey)
-        .update(rawSignature)
-        .digest('hex');
+      .createHmac('sha256', this.config.secretKey)
+      .update(rawSignature)
+      .digest('hex');
 
-    // Tạo request body - đảm bảo format đúng
+    // Tạo request body
     const requestBody = {
       partnerCode: this.config.partnerCode,
       partnerName: "Test",
@@ -89,58 +88,13 @@ class MoMoPaymentService {
       signature: signature
     };
 
-    console.log('MoMo Request Body:', JSON.stringify(requestBody, null, 2));
-    console.log('Raw Signature String:', rawSignature);
-    console.log('Generated Signature:', signature);
-
     try {
-      // Cấu hình axios với headers cụ thể cho MoMo
-      const axiosConfig = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent': 'nodejs-momo-client'
-        },
-        timeout: 30000, // 30 seconds timeout
-        maxRedirects: 5
-      };
-
       // Gửi request đến MoMo API
-      const response = await axios.post(this.endpointUrl, requestBody, axiosConfig);
-
-      console.log('MoMo Response:', response.data);
-
-      // Kiểm tra response từ MoMo
-      if (response.data && typeof response.data === 'object') {
-        return response.data;
-      } else {
-        throw new Error('Invalid response format from MoMo');
-      }
-
-    } catch (error: any) {
+      const response = await axios.post(this.endpointUrl, requestBody);
+      return response.data;
+    } catch (error) {
       console.error('MoMo payment request error:', error);
-
-      // Log chi tiết lỗi để debug
-      if (error.response) {
-        console.error('MoMo Error Response Status:', error.response.status);
-        console.error('MoMo Error Response Headers:', error.response.headers);
-        console.error('MoMo Error Response Data:', error.response.data);
-      } else if (error.request) {
-        console.error('MoMo Error Request:', error.request);
-      } else {
-        console.error('MoMo Error Message:', error.message);
-      }
-
-      // Trả về lỗi cụ thể
-      if (error.response?.status === 400) {
-        throw new Error(`MoMo API Error: ${error.response.data?.message || 'Bad Request'}`);
-      } else if (error.code === 'ECONNREFUSED') {
-        throw new Error('Không thể kết nối tới MoMo API');
-      } else if (error.code === 'ETIMEDOUT') {
-        throw new Error('Timeout khi kết nối tới MoMo API');
-      } else {
-        throw new Error('Không thể kết nối với cổng thanh toán MoMo');
-      }
+      throw new Error('Không thể kết nối với cổng thanh toán MoMo');
     }
   }
 
@@ -151,50 +105,50 @@ class MoMoPaymentService {
     try {
       // Log đầy đủ dữ liệu để debug
       console.log('Verifying MoMo callback data:', JSON.stringify(callbackData, null, 2));
-
-      const {
+      
+      const { 
         partnerCode, accessKey, requestId, amount, orderId,
-        ipnUrl, redirectUrl,
+        ipnUrl,redirectUrl,
         orderInfo, orderType, transId, resultCode, message, requestType,
-        payType, responseTime, extraData, signature
+        payType, responseTime, extraData, signature 
       } = callbackData;
-
+      
       // Log thông tin chữ ký nhận được
       console.log('Received signature:', signature);
-
+      
       // Tạo signature để xác thực - đảm bảo thứ tự đúng theo tài liệu MoMo
       const rawSignature = `accessKey=${accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${partnerCode}&redirectUrl=${redirectUrl}&requestId=${requestId}&requestType=${requestType}`;
-
+      
       console.log('Raw signature string:', rawSignature);
       console.log('Secret key used:', this.config.secretKey);
-
+      
       const computedSignature = crypto
-          .createHmac('sha256', this.config.secretKey)
-          .update(rawSignature)
-          .digest('hex');
-
+        .createHmac('sha256', this.config.secretKey)
+        .update(rawSignature)
+        .digest('hex');
+      
       console.log('Computed signature:', computedSignature);
-
+      
       // Kiểm tra signature và trả về kết quả
       const isValid = computedSignature === signature;
       console.log('Signature validation result:', isValid);
-
+      
       // Tạm thời bỏ qua việc xác thực chữ ký trong môi trường phát triển
       if (process.env.NODE_ENV === 'development' && !isValid) {
         console.warn('⚠️ Signature validation failed but ignored in development mode');
         return true; // Bỏ qua lỗi chữ ký trong môi trường phát triển
       }
-
+      
       return isValid;
     } catch (error) {
       console.error('Error verifying MoMo signature:', error);
-
+      
       // Tạm thời bỏ qua lỗi trong môi trường phát triển
       if (process.env.NODE_ENV === 'development') {
         console.warn('⚠️ Signature verification error ignored in development mode');
         return true;
       }
-
+      
       return false;
     }
   }
@@ -206,27 +160,27 @@ class MoMoPaymentService {
     try {
       // Thêm logs để debug quá trình giải mã
       console.log('Raw extraData received:', extraData);
-
+      
       // Kiểm tra xem extraData có tồn tại không
       if (!extraData) {
         console.error('extraData is missing or empty');
         return {};
       }
-
+      
       // Giải mã Base64
       const decodedData = Buffer.from(extraData, 'base64').toString('utf8');
       console.log('Decoded string:', decodedData);
-
+      
       try {
         // Parse JSON từ chuỗi đã giải mã
         const jsonData = JSON.parse(decodedData);
         console.log('Parsed JSON data:', jsonData);
-
+        
         // Kiểm tra các trường cần thiết
         if (!jsonData.packageId || !jsonData.memberId) {
           console.warn('Missing required fields in extraData:', jsonData);
         }
-
+        
         return jsonData;
       } catch (jsonError) {
         console.error('JSON parsing error:', jsonError);
