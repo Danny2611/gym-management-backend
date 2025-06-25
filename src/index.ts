@@ -80,7 +80,7 @@ app.use(express.json());
 //   credentials: true
 // }));
 app.use(cors({
-  origin: "https://gym-management-fronted-4jgg.vercel.app", // tên miền frontend
+  origin: "https://gym-management-fronted.vercel.app", // tên miền frontend
   credentials: true // nếu bạn có dùng cookie, session
 }));
 app.use(passport.initialize());
