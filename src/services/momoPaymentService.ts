@@ -117,7 +117,19 @@ class MoMoPaymentService {
       console.log('Received signature:', signature);
       
       // Tạo signature để xác thực - đảm bảo thứ tự đúng theo tài liệu MoMo
-      const rawSignature = `accessKey=${accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${partnerCode}&redirectUrl=${redirectUrl}&requestId=${requestId}&requestType=${requestType}`;
+      // const rawSignature = `accessKey=${accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${partnerCode}&redirectUrl=${redirectUrl}&requestId=${requestId}&requestType=${requestType}`;
+      const rawSignature = 
+        `accessKey=${this.config.accessKey}` +
+        `&amount=${amount}` +
+        `&extraData=${extraData}` +
+        `&ipnUrl=${this.config.ipnUrl}` +
+        `&orderId=${orderId}` +
+        `&orderInfo=${orderInfo}` +
+        `&partnerCode=${this.config.partnerCode}` +
+        `&redirectUrl=${this.config.redirectUrl}` +
+        `&requestId=${requestId}` +
+        `&requestType=${this.config.requestType}`;
+
       
       console.log('Raw signature string:', rawSignature);
       console.log('Secret key used:', this.config.secretKey);
