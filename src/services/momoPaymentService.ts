@@ -1,4 +1,4 @@
-// # Xử lý thanh toán
+// # Xử lý thanh toán - Fixed version
 import axios from 'axios';
 import * as crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
@@ -99,39 +99,48 @@ class MoMoPaymentService {
   }
 
   /**
-   * Xác thực callback từ MoMo
+   * Xác thực callback từ MoMo - FIXED VERSION
    */
   verifyCallback(callbackData: any): boolean {
     try {
-      // Log đầy đủ dữ liệu để debug
       console.log('Verifying MoMo callback data:', JSON.stringify(callbackData, null, 2));
       
       const { 
-        partnerCode, accessKey, requestId, amount, orderId,
-        ipnUrl,redirectUrl,
-        orderInfo, orderType, transId, resultCode, message, requestType,
-        payType, responseTime, extraData, signature 
+        partnerCode, 
+        orderId, 
+        requestId, 
+        amount, 
+        orderInfo, 
+        orderType, 
+        transId, 
+        resultCode, 
+        message, 
+        payType, 
+        responseTime, 
+        extraData, 
+        signature 
       } = callbackData;
       
-      // Log thông tin chữ ký nhận được
       console.log('Received signature:', signature);
       
-      // Tạo signature để xác thực - đảm bảo thứ tự đúng theo tài liệu MoMo
-      // const rawSignature = `accessKey=${accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${partnerCode}&redirectUrl=${redirectUrl}&requestId=${requestId}&requestType=${requestType}`;
+      // Tạo signature để xác thực theo đúng format của MoMo callback
+      // Thứ tự các tham số khác với khi tạo payment request
       const rawSignature = 
         `accessKey=${this.config.accessKey}` +
         `&amount=${amount}` +
         `&extraData=${extraData}` +
-        `&ipnUrl=${this.config.ipnUrl}` +
+        `&message=${message}` +
         `&orderId=${orderId}` +
         `&orderInfo=${orderInfo}` +
-        `&partnerCode=${this.config.partnerCode}` +
-        `&redirectUrl=${this.config.redirectUrl}` +
+        `&orderType=${orderType}` +
+        `&partnerCode=${partnerCode}` +
+        `&payType=${payType}` +
         `&requestId=${requestId}` +
-        `&requestType=${this.config.requestType}`;
-
+        `&responseTime=${responseTime}` +
+        `&resultCode=${resultCode}` +
+        `&transId=${transId}`;
       
-      console.log('Raw signature string:', rawSignature);
+      console.log('Raw signature string for callback:', rawSignature);
       console.log('Secret key used:', this.config.secretKey);
       
       const computedSignature = crypto
@@ -141,26 +150,72 @@ class MoMoPaymentService {
       
       console.log('Computed signature:', computedSignature);
       
-      // Kiểm tra signature và trả về kết quả
       const isValid = computedSignature === signature;
       console.log('Signature validation result:', isValid);
-      
-      // Tạm thời bỏ qua việc xác thực chữ ký trong môi trường phát triển
-      if (process.env.NODE_ENV === 'development' && !isValid) {
-        console.warn('⚠️ Signature validation failed but ignored in development mode');
-        return true; // Bỏ qua lỗi chữ ký trong môi trường phát triển
-      }
       
       return isValid;
     } catch (error) {
       console.error('Error verifying MoMo signature:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Xác thực IPN từ MoMo (tương tự callback nhưng có thể có format khác)
+   */
+  verifyIPN(ipnData: any): boolean {
+    try {
+      console.log('Verifying MoMo IPN data:', JSON.stringify(ipnData, null, 2));
       
-      // Tạm thời bỏ qua lỗi trong môi trường phát triển
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('⚠️ Signature verification error ignored in development mode');
-        return true;
-      }
+      const { 
+        partnerCode, 
+        orderId, 
+        requestId, 
+        amount, 
+        orderInfo, 
+        orderType, 
+        transId, 
+        resultCode, 
+        message, 
+        payType, 
+        responseTime, 
+        extraData, 
+        signature 
+      } = ipnData;
       
+      console.log('Received IPN signature:', signature);
+      
+      // Tạo signature để xác thực IPN (có thể khác với callback)
+      const rawSignature = 
+        `accessKey=${this.config.accessKey}` +
+        `&amount=${amount}` +
+        `&extraData=${extraData}` +
+        `&message=${message}` +
+        `&orderId=${orderId}` +
+        `&orderInfo=${orderInfo}` +
+        `&orderType=${orderType}` +
+        `&partnerCode=${partnerCode}` +
+        `&payType=${payType}` +
+        `&requestId=${requestId}` +
+        `&responseTime=${responseTime}` +
+        `&resultCode=${resultCode}` +
+        `&transId=${transId}`;
+      
+      console.log('Raw signature string for IPN:', rawSignature);
+      
+      const computedSignature = crypto
+        .createHmac('sha256', this.config.secretKey)
+        .update(rawSignature)
+        .digest('hex');
+      
+      console.log('Computed IPN signature:', computedSignature);
+      
+      const isValid = computedSignature === signature;
+      console.log('IPN signature validation result:', isValid);
+      
+      return isValid;
+    } catch (error) {
+      console.error('Error verifying MoMo IPN signature:', error);
       return false;
     }
   }
@@ -170,25 +225,20 @@ class MoMoPaymentService {
    */
   decodeExtraData(extraData: string): any {
     try {
-      // Thêm logs để debug quá trình giải mã
       console.log('Raw extraData received:', extraData);
       
-      // Kiểm tra xem extraData có tồn tại không
       if (!extraData) {
         console.error('extraData is missing or empty');
         return {};
       }
       
-      // Giải mã Base64
       const decodedData = Buffer.from(extraData, 'base64').toString('utf8');
       console.log('Decoded string:', decodedData);
       
       try {
-        // Parse JSON từ chuỗi đã giải mã
         const jsonData = JSON.parse(decodedData);
         console.log('Parsed JSON data:', jsonData);
         
-        // Kiểm tra các trường cần thiết
         if (!jsonData.packageId || !jsonData.memberId) {
           console.warn('Missing required fields in extraData:', jsonData);
         }
