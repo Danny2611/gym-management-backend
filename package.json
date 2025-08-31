@@ -4,13 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   "dev": "nodemon --watch src --exec ts-node -r tsconfig-paths/register src/index.ts",
-    "build": "rimraf dist && tsc",
+    "dev": "nodemon --watch src --exec ts-node -r tsconfig-paths/register src/index.ts",
+    "build": "tsc",
     "start": "node dist/index.js",
-    "prod": "npm run build && npm start",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint src/**/*.ts",
-    "test": "jest"
+    "prod": "npm run build && npm start"
   },
   "keywords": [],
   "author": "",
