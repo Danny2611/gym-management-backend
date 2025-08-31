@@ -1,18 +1,15 @@
-import { Request, Response, NextFunction } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
-import { ParsedQs } from "qs";
-
+import { Request } from 'express';
 export interface JwtPayload {
-  userId: string;
-  role: string;
-  type: 'access' | 'refresh';
-  iat?: number;
-  exp?: number;
-  iss?: string;
-  aud?: string;
+  userId: string;       // ID của người dùng
+  role: string,
+  type: 'access' | 'refresh';  // Loại token: Access Token hoặc Refresh Token
+  iat?: number;         // Thời điểm token được tạo (Issued At - UNIX timestamp)
+  exp?: number;         // Thời điểm token hết hạn (Expires At - UNIX timestamp)
+  iss?: string;         // Người cấp phát token (Issuer)
+  aud?: string;         // Người nhận token (Audience)
 }
 
-export interface AuthRequest extends Request<ParamsDictionary, any, any, ParsedQs> {
+export interface AuthRequest extends Request {
   userId?: string;
   userRole?: string;
 }
