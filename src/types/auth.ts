@@ -1,4 +1,6 @@
-import { Request } from 'express';
+import { Request } from "express";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 export interface JwtPayload {
   userId: string;       // ID của người dùng
   role: string,
@@ -12,4 +14,6 @@ export interface JwtPayload {
 export interface AuthRequest extends Request {
   userId?: string;
   userRole?: string;
+  query: ParsedQs;                // thêm query
+  params: ParamsDictionary;       // thêm params
 }
