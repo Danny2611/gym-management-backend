@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
+// import asyncHandler from 'express-async-handler';
 import Membership, { IMembership } from '../../models/Membership';
 import PackageDetail from '../../models/PackageDetail';
 import membershipService from '../../services/membershipService';
-import { AuthRequest } from '../../types/auth';
+import { AuthRequest, asyncHandler } from '../../types/auth';
 
 /**
  * Lấy danh sách các địa điểm mà hội viên có thể tập luyện dựa trên các gói đã đăng ký

@@ -1,7 +1,8 @@
 //src/user/paymentController
 
 import { Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
+// import asyncHandler from 'express-async-handler';
+import { AuthRequest, asyncHandler } from '../../types/auth';
 import { HydratedDocument } from 'mongoose';
 import mongoose from 'mongoose';
 import MoMoPaymentService from '../../services/momoPaymentService';
@@ -11,7 +12,7 @@ import Membership, { IMembership } from '../../models/Membership';
 import Member from '../../models/Member';
 import Promotion from '../../models/Promotion';
 import { validatePaymentRequest } from '../../utils/validators/paymentValidator';
-import { AuthRequest } from '../../types/auth';
+// import { AuthRequest } from '../../types/auth';
 
 
     interface AppliedPromotion {

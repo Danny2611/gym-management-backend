@@ -1,11 +1,11 @@
 //src/user/PackageController
 
 import { Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
+import { AuthRequest, asyncHandler } from '../../types/auth';
 import Package from '../../models/Package';
 import Membership from '../../models/Membership';
 import { validatePackageRequest } from '../../utils/validators/packageValidator';
-import { AuthRequest } from '../../types/auth';
+// import { AuthRequest } from '../../types/auth';
 
 
 /**
