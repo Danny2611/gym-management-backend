@@ -1,28 +1,25 @@
-import { Request } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
-import { ParsedQs } from 'qs';
+import { Request } from "express";
 
 export interface JwtPayload {
   userId: string;
   role: string;
-  type: 'access' | 'refresh';
+  type: "access" | "refresh";
   iat?: number;
   exp?: number;
   iss?: string;
   aud?: string;
 }
 
-// ✅ GIẢI PHÁP: AuthRequest kế thừa HOÀN TOÀN từ Request
-export interface AuthRequest extends Request<ParamsDictionary, any, any, ParsedQs> {
+export interface AuthRequest<
+  P = Record<string, any>,   // Params
+  ResBody = any,             // Response body
+  ReqBody = any,             // Request body
+  ReqQuery = any             // Query
+> extends Request<P, ResBody, ReqBody, ReqQuery> {
   userId?: string;
   userRole?: string;
-  
-  // Explicitly override để đảm bảo TypeScript hiểu
-  query: ParsedQs;
-  params: ParamsDictionary;
-  body: any;
-  headers: any;
 }
+
 
 // Helper type cho API responses
 export interface ApiResponse<T = any> {
