@@ -1,13 +1,14 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
+import './config/env'; 
 import cors from 'cors';
 import passport from 'passport';
 import helmet from 'helmet';
 import compression from 'compression'; // Nén dữ liệu HTTP Response để tăng tốc độ tải trang
 
 // config
-import connectDB  from './config/db';
+
 // import corsConfig from './config/cors';
 import './config/passport'; // Import cấu hình OAuth
 import cookieParser from 'cookie-parser'; // Đọc và xử lý cookie từ request
@@ -29,6 +30,8 @@ import userRoutes from "./routes/api/userRoutes";
 import adminRoutes from './routes/api/adminRoutes';
 import publicRoutes from "./routes/api/publicRoutes";
 import pwaRoutes from "./routes/pwa/pwaRoutes";
+import morgan from 'morgan';
+import { connectDB } from './config/db';
 
 
 dotenv.config(); 
@@ -83,6 +86,13 @@ app.use(cors({
   origin: "https://gym-management-fronted.vercel.app", // tên miền frontend
   credentials: true // nếu bạn có dùng cookie, session
 }));
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+} else {
+  app.use(morgan('combined'));
+}
+
 app.use(passport.initialize());
 // app.use(cors(corsConfig.current));
 

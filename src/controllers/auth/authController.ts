@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import { AuthRequest, asyncHandler } from '../../types/auth';
 import { validationResult } from 'express-validator';
-import { registerUser, loginUser, refreshUserTokens } from '../../services/auth/authService';
+import { registerUser, loginUser, refreshUserTokens } from '../../services/authService';
 
 // Đăng ký
 export const register = asyncHandler(async (req: Request, res: Response) => {
