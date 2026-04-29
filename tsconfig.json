@@ -1,21 +1,32 @@
 {
   "compilerOptions": {
+    // ===== Compatibility =====
+    "ignoreDeprecations": "6.0",  // ← đổi từ "5.0" thành "6.0"
+
+    // ===== Path aliases =====
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["*"]
+    },
+
+    // ===== Type checking =====
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
 
+    // ===== Module interop ====
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["./node_modules/@types", "./types"],
+    "resolveJsonModule": true,
 
+    // ===== Output =====
     "target": "ES2020",
-    "module": "commonjs",
+    "module": "CommonJS",
+    "moduleResolution": "node",
 
     "outDir": "./dist",
-    "rootDir": "./src",
-
-    "moduleResolution": "node16",
-    "resolveJsonModule": true
+    "rootDir": "./src"
   },
   "include": ["src/**/*", "types/**/*"],
   "ts-node": {
