@@ -33,7 +33,7 @@ router.get('/training-locations', membershipController.getMemberTrainingLocation
 router.post('/packages/register', packageController.registerPackage);
 router.get('/my-package', membershipController.getMemberships);
 router.get('/my-package-active', membershipController.getMembershipsActive);
-router.post('/my-package/detail', membershipController.getMembershipById);
+router.get('/my-package/detail', membershipController.getMembershipById);
 router.patch('/my-package/pause', membershipController.pauseMembership);
 router.patch('/my-package/resume', membershipController.resumeMembership);
 router.get('/my-package/infor-membership', membershipController.getInforMembershipDetails);
@@ -64,11 +64,6 @@ router.get('/workout/weekly', workoutController.getWeeklyWorkoutStats);
 router.get('/workout/monthly-comparison', workoutController.getMonthComparisonStats);
 router.get('/workout/last-7-days', workoutController.getLast7DaysWorkouts);
 router.get('/workout/next-week', workoutController.getUpcomingWorkouts);
-
-
-
-
-
 
 
 
