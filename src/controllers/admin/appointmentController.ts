@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import appointmentService from '../../services/admin/appoinmentService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 

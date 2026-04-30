@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import pushNotificationService from '../../services/pwa/pushNotificationService';
 import { pushConfig } from '../../config/push-notification';
 import  Notification  from '../../models/Notification';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 

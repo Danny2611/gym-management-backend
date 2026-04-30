@@ -4,7 +4,7 @@
 import { Request, Response } from 'express';
 import promotionService from '../../services/admin/promotionService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 // Get all promotions with pagination, filtering and sorting

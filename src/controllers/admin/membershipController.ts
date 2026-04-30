@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import membershipService from '../../services/admin/membershipService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 // Get all memberships with pagination, filtering and sorting
