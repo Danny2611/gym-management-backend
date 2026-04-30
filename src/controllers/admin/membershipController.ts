@@ -3,11 +3,11 @@
 import { Request, Response } from 'express';
 import membershipService from '../../services/admin/membershipService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 // Get all memberships with pagination, filtering and sorting
-export const getAllMemberships = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllMemberships = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       page = '1',
@@ -48,7 +48,7 @@ export const getAllMemberships = async (req: AuthRequest, res: Response): Promis
 };
 
 // Get membership by ID
-export const getMembershipById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMembershipById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -77,7 +77,7 @@ export const getMembershipById = async (req: AuthRequest, res: Response): Promis
 };
 
 // Delete membership
-export const deleteMembership = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deleteMembership = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.body;
 
@@ -107,7 +107,7 @@ export const deleteMembership = async (req: AuthRequest, res: Response): Promise
 };
 
 // Get membership statistics
-export const getMembershipStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMembershipStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const stats = await membershipService.getMembershipStats();
 

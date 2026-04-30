@@ -4,11 +4,11 @@
 import { Request, Response } from 'express';
 import promotionService from '../../services/admin/promotionService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 // Get all promotions with pagination, filtering and sorting
-export const getAllPromotions = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllPromotions = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       page = '1',
@@ -45,7 +45,7 @@ export const getAllPromotions = async (req: AuthRequest, res: Response): Promise
 };
 
 // Get promotion by ID
-export const getPromotionById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPromotionById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -84,7 +84,7 @@ export const getPromotionById = async (req: AuthRequest, res: Response): Promise
 };
 
 // Create new promotion
-export const createPromotion = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createPromotion = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       name,
@@ -162,7 +162,7 @@ export const createPromotion = async (req: AuthRequest, res: Response): Promise<
 };
 
 // Update promotion
-export const updatePromotion = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updatePromotion = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const updateData = req.body;
@@ -249,7 +249,7 @@ export const updatePromotion = async (req: AuthRequest, res: Response): Promise<
 };
 
 // Delete promotion
-export const deletePromotion = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deletePromotion = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -295,7 +295,7 @@ export const deletePromotion = async (req: AuthRequest, res: Response): Promise<
 };
 
 // Get promotion effectiveness
-export const getPromotionEffectiveness = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPromotionEffectiveness = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -334,7 +334,7 @@ export const getPromotionEffectiveness = async (req: AuthRequest, res: Response)
 };
 
 // Get active promotions for a specific package
-export const getActivePromotionsForPackage = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getActivePromotionsForPackage = async (req: Request, res: Response): Promise<void> => {
   try {
     const { packageId } = req.params;
 
@@ -364,7 +364,7 @@ export const getActivePromotionsForPackage = async (req: AuthRequest, res: Respo
 };
 
 // Get promotion statistics
-export const getPromotionStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPromotionStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const stats = await promotionService.getPromotionStats();
 
@@ -383,7 +383,7 @@ export const getPromotionStats = async (req: AuthRequest, res: Response): Promis
 };
 
 // Update promotion statuses (utility endpoint for cron job or manual trigger)
-export const updatePromotionStatuses = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updatePromotionStatuses = async (req: Request, res: Response): Promise<void> => {
   try {
     await promotionService.updatePromotionStatuses();
 

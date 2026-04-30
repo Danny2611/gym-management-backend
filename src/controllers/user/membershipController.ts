@@ -3,12 +3,12 @@ import { Request, Response } from 'express';
 import Membership, { IMembership } from '../../models/Membership';
 import PackageDetail from '../../models/PackageDetail';
 import membershipService from '../../services/membershipService';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import {  asyncHandler } from '../../types/auth';
 
 /**
  * Lấy danh sách các địa điểm mà hội viên có thể tập luyện dựa trên các gói đã đăng ký
  */
-export const getMemberTrainingLocations = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getMemberTrainingLocations = asyncHandler(async (req: Request, res: Response) => {
   try {
     const memberId = req.userId;
 
@@ -80,7 +80,7 @@ export const getMemberTrainingLocations = asyncHandler(async (req: AuthRequest, 
 /**
  * Lấy danh sách gói tập đã đăng ký của hội viên
  */
-export const getMemberships = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getMemberships = asyncHandler(async (req: Request, res: Response) => {
   try {
     const memberId = req.userId;
 
@@ -116,7 +116,7 @@ export const getMemberships = asyncHandler(async (req: AuthRequest, res: Respons
 /**
  * Lấy chi tiết gói tập đã đăng ký
  */
-export const getMembershipById = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getMembershipById = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { membershipId } = req.body;
     console.log('id cua memberShip',membershipId);
@@ -180,7 +180,7 @@ export const updateMembershipStatus = async (membership: IMembership): Promise<I
 /**
  * tạm dừng gói tập ()
  */
-export const pauseMembership = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const pauseMembership = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { membershipId } =  req.body;
     // Tìm thông tin membership
@@ -215,7 +215,7 @@ export const pauseMembership = asyncHandler(async (req: AuthRequest, res: Respon
 /**
  * Kích hoạt lại gói tập đã tạm dừng
  */
-export const resumeMembership = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const resumeMembership = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { membershipId } = req.body;
    
@@ -260,7 +260,7 @@ export const resumeMembership = asyncHandler(async (req: AuthRequest, res: Respo
 });
 
 //Lấy danh sách gói tập đã đăng ký của hội viên
-export const getMembershipsActive = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getMembershipsActive = asyncHandler(async (req: Request, res: Response) => {
   try {
     const memberId = req.userId;
 
@@ -294,7 +294,7 @@ export const getMembershipsActive = asyncHandler(async (req: AuthRequest, res: R
 });
 
 //Lấy danh sách gói tập đã đăng ký của hội viên
-export const getInforMembershipDetails = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getInforMembershipDetails = asyncHandler(async (req: Request, res: Response) => {
   try {
     const memberId = req.userId;
 

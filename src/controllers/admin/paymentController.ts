@@ -3,12 +3,12 @@
 import { Request, Response } from 'express';
 import paymentService from '../../services/admin/paymentService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 
 // Get all payments with pagination, filtering and sorting
-export const getAllPayments = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllPayments = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       page = '1',
@@ -51,7 +51,7 @@ export const getAllPayments = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Get payment by ID
-export const getPaymentById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPaymentById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -80,7 +80,7 @@ export const getPaymentById = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Update payment status
-export const updatePaymentStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updatePaymentStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const { status, transactionId } = req.body;
@@ -127,7 +127,7 @@ export const updatePaymentStatus = async (req: AuthRequest, res: Response): Prom
 };
 
 // Get payments by member ID
-export const getPaymentsByMemberId = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPaymentsByMemberId = async (req: Request, res: Response): Promise<void> => {
   try {
     const { memberId } = req.params;
     const {
@@ -177,7 +177,7 @@ export const getPaymentsByMemberId = async (req: AuthRequest, res: Response): Pr
 };
 
 // Get payment statistics
-export const getPaymentStatistics = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPaymentStatistics = async (req: Request, res: Response): Promise<void> => {
   try {
     const statistics = await paymentService.getPaymentStatistics();
 

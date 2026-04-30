@@ -4,7 +4,7 @@ import { validationResult } from 'express-validator';
 import appointmentService from '../../services/appointmentService';
 import Membership from '../../models/Membership';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 
@@ -17,7 +17,7 @@ interface MemberScheduleFilters {
 }
 
 //Tạo lịch hẹn mới với PT
-export const createAppointment = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createAppointment = async (req: Request, res: Response): Promise<void> => {
     try {
       // Kiểm tra lỗi validation
       const errors = validationResult(req);
@@ -86,7 +86,7 @@ export const createAppointment = async (req: AuthRequest, res: Response): Promis
   };
 
  // lịch hẹn đã đã nhận
-export const getMemberSchedule = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMemberSchedule = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -149,7 +149,7 @@ export const getMemberSchedule = async (req: AuthRequest, res: Response): Promis
 };
 
 //Lấy tất cả các lịch hẹn của member (bất kể trạng thái)
-export const getAllMemberAppointments = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllMemberAppointments = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -201,7 +201,7 @@ export const getAllMemberAppointments = async (req: AuthRequest, res: Response):
 };
 
 // Lấy thông tin chi tiết của một lịch hẹn
-export const getAppointmentById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAppointmentById = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     const { appointmentId } = req.params;
@@ -257,7 +257,7 @@ export const getAppointmentById = async (req: AuthRequest, res: Response): Promi
 };
 
 //Hủy lịch hẹn
-export const cancelAppointment = async (req: AuthRequest, res: Response): Promise<void> => {
+export const cancelAppointment = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     const { appointmentId } = req.params;
@@ -300,7 +300,7 @@ export const cancelAppointment = async (req: AuthRequest, res: Response): Promis
 
 // đánh dấu hoàn thành buổi tập
 // Hoàn thành lịch hẹn
-export const completeAppointment = async (req: AuthRequest, res: Response): Promise<void> => {
+export const completeAppointment = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     const { appointmentId } = req.params;
@@ -398,7 +398,7 @@ export const completeAppointment = async (req: AuthRequest, res: Response): Prom
 };
 
 
-export const rescheduleAppointment = async (req: AuthRequest, res: Response): Promise<void> => {
+export const rescheduleAppointment = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     const { appointmentId } = req.params;
@@ -446,7 +446,7 @@ export const rescheduleAppointment = async (req: AuthRequest, res: Response): Pr
 };
 
 //Kiểm tra lịch trống của huấn luyện viên
-export const checkTrainerAvailability = async (req: AuthRequest, res: Response): Promise<void> => {
+export const checkTrainerAvailability = async (req: Request, res: Response): Promise<void> => {
     try {
       const { trainer_id, date, startTime, endTime } = req.body;
   
@@ -478,7 +478,7 @@ export const checkTrainerAvailability = async (req: AuthRequest, res: Response):
     }
   };
 
-export const getUpcomingAppointments = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getUpcomingAppointments = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     

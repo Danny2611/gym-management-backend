@@ -13,10 +13,7 @@ export interface JwtPayload {
 
 // Extend trực tiếp từ Request không dùng generic phức tạp
 // body, params, query, headers đều được kế thừa đầy đủ
-export interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+
 
 export interface ApiResponse<T = any> {
   success: boolean;
@@ -26,13 +23,13 @@ export interface ApiResponse<T = any> {
 }
 
 export type AsyncHandlerFunction = (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => Promise<void>;
 
 export const asyncHandler = (fn: AsyncHandlerFunction) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req as AuthRequest, res, next)).catch(next);
+    Promise.resolve(fn(req as Request, res, next)).catch(next);
   };
 };

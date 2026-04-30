@@ -4,12 +4,12 @@ import { Request, Response } from 'express';
 import pushNotificationService from '../../services/pwa/pushNotificationService';
 import { pushConfig } from '../../config/push-notification';
 import  Notification  from '../../models/Notification';
-import { AuthRequest } from '../../types/auth';
+
 
 
 
 // Đăng ký subscription
-const subscribe = async (req: AuthRequest, res: Response) => {
+const subscribe = async (req: Request, res: Response) => {
   try {
     if (!req.userId) {
        res.status(401).json({
@@ -62,7 +62,7 @@ const getVapidPublicKey = async (req: Request, res: Response) => {
 
 
 // Gửi test notification
-const sendTestNotification = async (req: AuthRequest, res: Response) => {
+const sendTestNotification = async (req: Request, res: Response) => {
   try {
     const memberId =req.userId;
     const { title, message, type = 'system' } = req.body;
@@ -89,7 +89,7 @@ const sendTestNotification = async (req: AuthRequest, res: Response) => {
 };
 
 // Hủy subscription
-const unsubscribe = async (req: AuthRequest, res: Response) => {
+const unsubscribe = async (req: Request, res: Response) => {
   try {
     const { endpoint } = req.body;
     const memberId = req.userId;
@@ -110,7 +110,7 @@ const unsubscribe = async (req: AuthRequest, res: Response) => {
 };
 
 // Lấy danh sách notifications của user
-const getUserNotifications = async (req: AuthRequest, res: Response) => {
+const getUserNotifications = async (req: Request, res: Response) => {
   try {
     const memberId = req.userId;
     const page = parseInt(req.query.page as string) || 1;
@@ -147,7 +147,7 @@ const getUserNotifications = async (req: AuthRequest, res: Response) => {
 };
 
 // Đánh dấu notification đã đọc
-const markAsRead = async (req: AuthRequest, res: Response) => {
+const markAsRead = async (req: Request, res: Response) => {
   try {
     const { notificationIds } = req.body;
     const memberId = req.userId;

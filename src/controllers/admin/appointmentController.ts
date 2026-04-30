@@ -2,12 +2,12 @@
 import { Request, Response } from 'express';
 import appointmentService from '../../services/admin/appoinmentService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 
 // Get all appointments with pagination, filtering and sorting
-export const getAllAppointments = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllAppointments = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       page = '1',
@@ -65,7 +65,7 @@ export const getAllAppointments = async (req: AuthRequest, res: Response): Promi
 };
 
 // Get appointment by ID
-export const getAppointmentById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAppointmentById = async (req: Request, res: Response): Promise<void> => {
   try {
     const {appointmentId} = req.params;
 
@@ -94,7 +94,7 @@ export const getAppointmentById = async (req: AuthRequest, res: Response): Promi
 };
 
 // Update appointment status
-export const updateAppointmentStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateAppointmentStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const {appointmentId} = req.params;
     const { status } = req.body;
@@ -137,7 +137,7 @@ export const updateAppointmentStatus = async (req: AuthRequest, res: Response): 
 
 
 // Get appointment statistics
-export const getAppointmentStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAppointmentStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const stats = await appointmentService.getAppointmentStats();
 

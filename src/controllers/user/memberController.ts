@@ -4,10 +4,10 @@ import { Request, Response } from 'express';
 import Member from '../../models/Member';
 import { uploadFile } from '../../middlewares/uploadFile';
 import { validateMemberUpdate } from '../../utils/validators/memberValidator';
-import { AuthRequest } from '../../types/auth';
+
 import { deleteCloudinaryFile } from '../../middlewares/uploadFile';
 
-export const updateAvatar = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateAvatar = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.userId;
     if (!userId) {
@@ -80,7 +80,7 @@ export const updateAvatar = async (req: AuthRequest, res: Response): Promise<voi
 /**
  * Get the current user's profile
  */
-export const getCurrentProfile = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getCurrentProfile = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.userId;
 
@@ -123,7 +123,7 @@ export const getCurrentProfile = async (req: AuthRequest, res: Response): Promis
 /**
  * Update current user's profile
  */
-export const updateProfile = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateProfile = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.userId;
     if (!userId) {
@@ -218,7 +218,7 @@ export const updateProfile = async (req: AuthRequest, res: Response): Promise<vo
 /**
  * Change email (requires verification)
  */
-export const updateEmail = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateEmail = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.userId;
     const { email } = req.body;
@@ -315,7 +315,7 @@ export const getMemberById = async (req: Request, res: Response): Promise<void> 
 /**
  * Deactivate the user account (not a full delete)
  */
-export const deactivateAccount = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deactivateAccount = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.userId;
     const { password } = req.body;

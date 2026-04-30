@@ -3,11 +3,11 @@
 import { Request, Response } from 'express';
 import packageService from '../../services/admin/packageService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 // Get all packages with pagination, filtering and sorting
-export const getAllPackages = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllPackages = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       page = '1',
@@ -48,7 +48,7 @@ export const getAllPackages = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Get package by ID
-export const getPackageById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPackageById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { packageId } = req.params;
     if (!Types.ObjectId.isValid(packageId)) {
@@ -76,7 +76,7 @@ export const getPackageById = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Create a new package
-export const createPackage = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createPackage = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       name,
@@ -132,7 +132,7 @@ export const createPackage = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Update an existing package
-export const updatePackage = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updatePackage = async (req: Request, res: Response): Promise<void> => {
   try {
     const { packageId } = req.params;    
     const {
@@ -196,7 +196,7 @@ export const updatePackage = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Delete (soft delete) a package
-export const deletePackage = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deletePackage = async (req: Request, res: Response): Promise<void> => {
   try {
     const { packageId } = req.params;    
     if (!Types.ObjectId.isValid(packageId)) {
@@ -223,7 +223,7 @@ export const deletePackage = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Toggle package status (active/inactive)
-export const togglePackageStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const togglePackageStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const { packageId } = req.params;
     
@@ -252,7 +252,7 @@ export const togglePackageStatus = async (req: AuthRequest, res: Response): Prom
 };
 
 // Get package statistics
-export const getPackageStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPackageStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const stats = await packageService.getPackageStats();
 

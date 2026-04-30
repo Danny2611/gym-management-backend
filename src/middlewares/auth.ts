@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../config/jwt';
-import { AuthRequest } from '../types/auth';
 
 
 
 
-export const authenticateJWT = (req: AuthRequest, res: Response, next: NextFunction): void => {
+
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction): void => {
     const authHeader = req.headers.authorization;
     
     if (!authHeader || !authHeader.startsWith('Bearer')) {
@@ -39,7 +39,7 @@ export const authenticateJWT = (req: AuthRequest, res: Response, next: NextFunct
     }
   };
   
-export const authenticateRefreshToken = (req: AuthRequest, res: Response, next: NextFunction): void => {
+export const authenticateRefreshToken = (req: Request, res: Response, next: NextFunction): void => {
     const { refreshToken } = req.body;
     
     if (!refreshToken) {

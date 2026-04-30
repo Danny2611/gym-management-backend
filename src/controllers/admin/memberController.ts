@@ -3,13 +3,13 @@
 import { Request, Response } from 'express';
 import memberService from '../../services/admin/memberService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 
 // Get all members with pagination and filters
 
-export const getAllMembers = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllMembers = async (req: Request, res: Response): Promise<void> => {
   
 
   try {
@@ -48,7 +48,7 @@ export const getAllMembers = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Get member by ID
-export const getMemberById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMemberById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { memberId } = req.params;
 
@@ -77,7 +77,7 @@ export const getMemberById = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Create new member
-export const createMember = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createMember = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberData = req.body;
 
@@ -106,7 +106,7 @@ export const createMember = async (req: AuthRequest, res: Response): Promise<voi
 };
 
 // Update member by ID
-export const updateMember = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateMember = async (req: Request, res: Response): Promise<void> => {
   try {
     const { memberId } = req.params;
     const updateData = req.body;
@@ -136,7 +136,7 @@ export const updateMember = async (req: AuthRequest, res: Response): Promise<voi
 };
 
 // Update member status
-export const updateMemberStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateMemberStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const { memberId } = req.params;
     const { status } = req.body;
@@ -166,7 +166,7 @@ export const updateMemberStatus = async (req: AuthRequest, res: Response): Promi
 };
 
 // Delete member by ID
-export const deleteMember = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deleteMember = async (req: Request, res: Response): Promise<void> => {
   try {
     const { memberId } = req.params;
 
@@ -194,7 +194,7 @@ export const deleteMember = async (req: AuthRequest, res: Response): Promise<voi
 };
 
 // Get member statistics
-export const getMemberStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMemberStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const stats = await memberService.getMemberStats();
 
