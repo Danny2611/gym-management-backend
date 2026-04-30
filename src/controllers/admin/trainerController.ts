@@ -3,11 +3,11 @@
 import { Request, Response } from 'express';
 import trainerService from '../../services/admin/trainerService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
+
 
 
 // Get all trainers with pagination, filtering and sorting
-export const getAllTrainers = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAllTrainers = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       page = '1',
@@ -49,7 +49,7 @@ export const getAllTrainers = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Get trainer by ID
-export const getTrainerById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getTrainerById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -78,7 +78,7 @@ export const getTrainerById = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Create a new trainer
-export const createTrainer = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createTrainer = async (req: Request, res: Response): Promise<void> => {
   try {
     const trainerData = req.body;
 
@@ -108,7 +108,7 @@ export const createTrainer = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Update an existing trainer
-export const updateTrainer = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateTrainer = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const trainerData = req.body;
@@ -142,7 +142,7 @@ export const updateTrainer = async (req: AuthRequest, res: Response): Promise<vo
 };
 
 // Delete a trainer
-export const deleteTrainer = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deleteTrainer = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -171,7 +171,7 @@ export const deleteTrainer = async (req: AuthRequest, res: Response): Promise<vo
 
 
 // Toggle trainer status (active/inactive)
-export const toggleTrainerStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const toggleTrainerStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     console.log('id:', id)
@@ -200,7 +200,7 @@ export const toggleTrainerStatus = async (req: AuthRequest, res: Response): Prom
 };
 
 // Update trainer schedule
-export const updateTrainerSchedule = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateTrainerSchedule = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const { schedule } = req.body;
@@ -253,7 +253,7 @@ export const updateTrainerSchedule = async (req: AuthRequest, res: Response): Pr
 };
 
 // Get trainer availability by date range
-export const getTrainerAvailability = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getTrainerAvailability = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const { startDate, endDate } = req.query;
@@ -310,7 +310,7 @@ export const getTrainerAvailability = async (req: AuthRequest, res: Response): P
 };
 
 // Get trainer statistics
-export const getTrainerStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getTrainerStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const stats = await trainerService.getTrainerStats();
 

@@ -2,7 +2,7 @@
 
 import { Request, Response } from 'express';
 // import asyncHandler from 'express-async-handler';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import { asyncHandler } from '../../types/auth';
 import { HydratedDocument } from 'mongoose';
 import mongoose from 'mongoose';
 import MoMoPaymentService from '../../services/momoPaymentService';
@@ -12,7 +12,7 @@ import Membership, { IMembership } from '../../models/Membership';
 import Member from '../../models/Member';
 import Promotion from '../../models/Promotion';
 import { validatePaymentRequest } from '../../utils/validators/paymentValidator';
-// import { AuthRequest } from '../../types/auth';
+// 
 
 
     interface AppliedPromotion {
@@ -26,7 +26,7 @@ import { validatePaymentRequest } from '../../utils/validators/paymentValidator'
 /**
  * Khởi tạo thanh toán MoMo cho gói tập
  */
-export const createMoMoPayment = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const createMoMoPayment = asyncHandler(async (req: Request, res: Response) => {
   try {
     // Kiểm tra và xác thực dữ liệu đầu vào
     const errors =  await validatePaymentRequest(req);
@@ -380,7 +380,7 @@ export const momoIpnCallback = asyncHandler(async (req: Request, res: Response) 
 // /**
 //  * Kiểm tra trạng thái thanh toán (cho frontend polling)
 //  */
-export const getPaymentStatus = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getPaymentStatus = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { paymentId } = req.params;
     const memberId = req.userId;
@@ -444,7 +444,7 @@ export const getPaymentStatus = asyncHandler(async (req: AuthRequest, res: Respo
 /**
  * Lấy thông tin thanh toán theo ID
  */
-export const getPaymentById = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getPaymentById = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { paymentId } = req.params;
     const memberId = req.userId;

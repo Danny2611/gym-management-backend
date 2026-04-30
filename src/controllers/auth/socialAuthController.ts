@@ -1,7 +1,7 @@
 
   // controllers/auth/socialAuthController.ts
 import { Request, Response } from 'express';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import {  asyncHandler } from '../../types/auth';
 import { generateAccessToken, generateRefreshToken } from '../../config/jwt';
 
 export const googleCallback = asyncHandler(async (req: Request, res: Response) => {

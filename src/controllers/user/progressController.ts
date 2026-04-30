@@ -3,11 +3,11 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import progressTrackingService from '../../services/progressTrackingService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '../../types/auth';
 
 
 
-export const getLatestBodyMetrics = async (req: AuthRequest, res: Response): Promise<void> => {
+
+export const getLatestBodyMetrics = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -35,7 +35,7 @@ export const getLatestBodyMetrics = async (req: AuthRequest, res: Response): Pro
   }
 };
 
-export const getInitialBodyMetrics = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getInitialBodyMetrics = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -63,7 +63,7 @@ export const getInitialBodyMetrics = async (req: AuthRequest, res: Response): Pr
   }
 };
 
-export const getPreviousMonthBodyMetrics = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getPreviousMonthBodyMetrics = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -91,7 +91,7 @@ export const getPreviousMonthBodyMetrics = async (req: AuthRequest, res: Respons
   }
 };
 
-export const getBodyMetricsComparison = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getBodyMetricsComparison = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -119,7 +119,7 @@ export const getBodyMetricsComparison = async (req: AuthRequest, res: Response):
   }
 };
 
-export const updateBodyMetrics = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateBodyMetrics = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -173,7 +173,7 @@ export const updateBodyMetrics = async (req: AuthRequest, res: Response): Promis
   }
 };
 
-export const getBodyStatsProgressByMonth = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getBodyStatsProgressByMonth = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -215,7 +215,7 @@ export const getBodyStatsProgressByMonth = async (req: AuthRequest, res: Respons
   }
 };
 
-export const getFitnessRadarData = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getFitnessRadarData = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -243,7 +243,7 @@ export const getFitnessRadarData = async (req: AuthRequest, res: Response): Prom
   }
 };
 
-export const calculateBodyMetricsChange = async (req: AuthRequest, res: Response): Promise<void> => {
+export const calculateBodyMetricsChange = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -304,7 +304,7 @@ export const calculateBodyMetricsChange = async (req: AuthRequest, res: Response
   }
 };
 
-export const getFormattedMonthlyBodyMetrics = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getFormattedMonthlyBodyMetrics = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     

@@ -1,6 +1,6 @@
 // # Xử lý đổi mật khẩu, quên mật khẩu
 import { Request, Response, } from 'express';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import {  asyncHandler } from '../../types/auth';
 import bcrypt from 'bcryptjs';
 import Member from '../../models/Member';
 import { sendNewPasswordEmail } from '../../services/emailService';

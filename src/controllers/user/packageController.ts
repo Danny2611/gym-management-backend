@@ -1,18 +1,18 @@
 //src/user/PackageController
 
 import { Request, Response } from 'express';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import {  asyncHandler } from '../../types/auth';
 import Package from '../../models/Package';
 import Membership from '../../models/Membership';
 import { validatePackageRequest } from '../../utils/validators/packageValidator';
-// import { AuthRequest } from '../../types/auth';
+// 
 
 
 /**
  * Đăng ký gói tập
  * Chức năng: Kiểm tra thông tin gói tập, chuyển đến trang thanh toán
  */
-export const registerPackage = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const registerPackage = asyncHandler(async (req: Request, res: Response) => {
   try {
     // Kiểm tra dữ liệu đầu vào
     const errors = await validatePackageRequest(req);

@@ -4,12 +4,12 @@ import memberReportService from '../../../services/admin/reports/memberReportSer
 import { Types } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
-import { AuthRequest } from '../../../types/auth';
+
 
 
 
 // Get basic member statistics
-export const getMemberStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMemberStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -63,7 +63,7 @@ export const getMemberStats = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Get comprehensive member report
-export const getComprehensiveMemberReport = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getComprehensiveMemberReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -108,7 +108,7 @@ export const getComprehensiveMemberReport = async (req: AuthRequest, res: Respon
 
 
 // Export member report to Excel
-export const exportMemberReportToExcel = async (req: AuthRequest, res: Response): Promise<void> => {
+export const exportMemberReportToExcel = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -171,7 +171,7 @@ export const exportMemberReportToExcel = async (req: AuthRequest, res: Response)
 };
 
 // Export member report to PDF
-export const exportMemberReportToPDF = async (req: AuthRequest, res: Response): Promise<void> => {
+export const exportMemberReportToPDF = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,

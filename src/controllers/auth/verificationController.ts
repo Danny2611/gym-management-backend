@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import {  asyncHandler } from '../../types/auth';
 import { verifyUserOTP } from '../../services/authService';
 import Member from '../../models/Member';
 import { sendOTPEmail } from '../../services/emailService';

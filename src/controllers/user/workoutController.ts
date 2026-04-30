@@ -4,10 +4,10 @@ import { validationResult } from 'express-validator';
 import workoutService from '../../services/workoutService';
 import { Types } from 'mongoose';
 import { MonthComparison, WeeklyWorkout } from '../../types/workoutSchedule';
-import { AuthRequest } from '../../types/auth';
 
 
-export const getWorkoutSuggestions = async (req: AuthRequest, res: Response): Promise<void> => {
+
+export const getWorkoutSuggestions = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -51,7 +51,7 @@ export const getWorkoutSuggestions = async (req: AuthRequest, res: Response): Pr
   }
 };
 
-export const createWorkoutSchedule = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createWorkoutSchedule = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -109,7 +109,7 @@ export const createWorkoutSchedule = async (req: AuthRequest, res: Response): Pr
   }
 };
 
-export const getMemberWorkoutSchedules = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMemberWorkoutSchedules = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -153,7 +153,7 @@ export const getMemberWorkoutSchedules = async (req: AuthRequest, res: Response)
   }
 };
 
-export const getWorkoutScheduleById = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getWorkoutScheduleById = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     const { scheduleId } = req.params;
@@ -207,7 +207,7 @@ export const getWorkoutScheduleById = async (req: AuthRequest, res: Response): P
   }
 };
 
-export const updateWorkoutScheduleStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateWorkoutScheduleStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     const { scheduleId } = req.params;
@@ -272,7 +272,7 @@ export const updateWorkoutScheduleStatus = async (req: AuthRequest, res: Respons
 };
 
 
-export const getWeeklyWorkoutStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getWeeklyWorkoutStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -304,7 +304,7 @@ export const getWeeklyWorkoutStats = async (req: AuthRequest, res: Response): Pr
   }
 };
 
-export const getMonthComparisonStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMonthComparisonStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -332,7 +332,7 @@ export const getMonthComparisonStats = async (req: AuthRequest, res: Response): 
   }
 };
 
-export const getLast7DaysWorkouts = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getLast7DaysWorkouts = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     
@@ -360,7 +360,7 @@ export const getLast7DaysWorkouts = async (req: AuthRequest, res: Response): Pro
   }
 };
 
-export const getUpcomingWorkouts = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getUpcomingWorkouts = async (req: Request, res: Response): Promise<void> => {
   try {
     const memberId = req.userId;
     

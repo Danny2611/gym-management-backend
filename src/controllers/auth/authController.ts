@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import { AuthRequest, asyncHandler } from '../../types/auth';
+import {  asyncHandler } from '../../types/auth';
 import { validationResult } from 'express-validator';
 import { registerUser, loginUser, refreshUserTokens } from '../../services/authService';
 

@@ -1,12 +1,12 @@
 // # Quản lý báo cáo, thống kê
 import { Request, Response } from 'express';
 import reportService from '../../services/admin/reportService';
-import { AuthRequest } from '../../types/auth';
+
 
 
 
 // Get revenue report by packages
-export const getRevenueByPackages = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getRevenueByPackages = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -39,7 +39,7 @@ export const getRevenueByPackages = async (req: AuthRequest, res: Response): Pro
 };
 
 // Get revenue time series data
-export const getRevenueTimeSeries = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getRevenueTimeSeries = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -70,7 +70,7 @@ export const getRevenueTimeSeries = async (req: AuthRequest, res: Response): Pro
 };
 
 // Get member statistics
-export const getMemberStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMemberStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -103,7 +103,7 @@ export const getMemberStats = async (req: AuthRequest, res: Response): Promise<v
 };
 
 // Get dashboard statistics
-export const getDashboardStats = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getDashboardStats = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -132,7 +132,7 @@ export const getDashboardStats = async (req: AuthRequest, res: Response): Promis
 };
 
 // Get advanced analytics
-export const getAdvancedAnalytics = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getAdvancedAnalytics = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -161,7 +161,7 @@ export const getAdvancedAnalytics = async (req: AuthRequest, res: Response): Pro
 };
 
 // Export revenue report to Excel
-export const exportRevenueToExcel = async (req: AuthRequest, res: Response): Promise<void> => {
+export const exportRevenueToExcel = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -197,7 +197,7 @@ export const exportRevenueToExcel = async (req: AuthRequest, res: Response): Pro
 };
 
 // Export member stats to Excel
-export const exportMemberStatsToExcel = async (req: AuthRequest, res: Response): Promise<void> => {
+export const exportMemberStatsToExcel = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -233,7 +233,7 @@ export const exportMemberStatsToExcel = async (req: AuthRequest, res: Response):
 };
 
 // Export revenue report to PDF
-export const exportRevenueToPDF = async (req: AuthRequest, res: Response): Promise<void> => {
+export const exportRevenueToPDF = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
@@ -269,7 +269,7 @@ export const exportRevenueToPDF = async (req: AuthRequest, res: Response): Promi
 };
 
 // Export member stats to PDF
-export const exportMemberStatsToPDF = async (req: AuthRequest, res: Response): Promise<void> => {
+export const exportMemberStatsToPDF = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       startDate,
