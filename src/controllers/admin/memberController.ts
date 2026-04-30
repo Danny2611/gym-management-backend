@@ -3,11 +3,9 @@
 import { Request, Response } from 'express';
 import memberService from '../../services/admin/memberService';
 import { Types } from 'mongoose';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+
 
 // Get all members with pagination and filters
 

@@ -4,11 +4,8 @@
 import { Request, Response } from 'express';
 import promotionService from '../../services/admin/promotionService';
 import { Types } from 'mongoose';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
 
 // Get all promotions with pagination, filtering and sorting
 export const getAllPromotions = async (req: AuthRequest, res: Response): Promise<void> => {

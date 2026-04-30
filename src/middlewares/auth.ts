@@ -1,10 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../config/jwt';
-
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+import { AuthRequest } from '../types/auth';
 
 
 

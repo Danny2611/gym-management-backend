@@ -3,11 +3,8 @@
 import { Request, Response } from 'express';
 import packageService from '../../services/admin/packageService';
 import { Types } from 'mongoose';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
 
 // Get all packages with pagination, filtering and sorting
 export const getAllPackages = async (req: AuthRequest, res: Response): Promise<void> => {
