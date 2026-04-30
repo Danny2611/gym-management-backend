@@ -1,14 +1,14 @@
 // src/middlewares/upload.ts
-import multer from 'multer';
+import multer, { FileFilterCallback, StorageEngine } from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
-
 import { Request } from 'express';
 import cloudinary from '../config/cloudinary';
 
-// Multer Cloudinary Storage config
+type MulterFile = Express.Multer.File;
+
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: async (req: Request, file: Express.Multer.File) => {
+  params: async (req: Request, file: MulterFile) => {
     const userId = (req as any).userId || 'guest';
     return {
       folder: 'gym-management/avatars',
@@ -19,11 +19,10 @@ const storage = new CloudinaryStorage({
   },
 });
 
-// File filter giống như trước
 const fileFilter = (
   req: Request,
-  file: Express.Multer.File,
-  cb: multer.FileFilterCallback
+  file: MulterFile,
+  cb: FileFilterCallback
 ) => {
   const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
   if (allowedMimeTypes.includes(file.mimetype)) {
@@ -33,20 +32,17 @@ const fileFilter = (
   }
 };
 
-// Cấu hình multer
 const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB
+    fileSize: 5 * 1024 * 1024,
   },
 });
 
-// Middleware giống cũ
 export const uploadFile = upload.single('avatar');
 export const uploadMultipleFiles = upload.array('images', 5);
 
-// Hàm xóa ảnh trên Cloudinary
 export const deleteCloudinaryFile = async (publicId: string): Promise<boolean> => {
   try {
     const result = await cloudinary.uploader.destroy(publicId);
