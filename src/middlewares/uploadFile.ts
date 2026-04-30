@@ -1,14 +1,13 @@
 // src/middlewares/upload.ts
-import multer, { FileFilterCallback, StorageEngine } from 'multer';
+import multer, { FileFilterCallback } from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import { Request } from 'express';
 import cloudinary from '../config/cloudinary';
 
-type MulterFile = Express.Multer.File;
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: async (req: Request, file: MulterFile) => {
+  params: async (req: Request, file: any) => {
     const userId = (req as any).userId || 'guest';
     return {
       folder: 'gym-management/avatars',
@@ -21,7 +20,7 @@ const storage = new CloudinaryStorage({
 
 const fileFilter = (
   req: Request,
-  file: MulterFile,
+  file: any,
   cb: FileFilterCallback
 ) => {
   const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
