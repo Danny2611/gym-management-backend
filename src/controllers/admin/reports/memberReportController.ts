@@ -4,11 +4,9 @@ import memberReportService from '../../../services/admin/reports/memberReportSer
 import { Types } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+
 
 // Get basic member statistics
 export const getMemberStats = async (req: AuthRequest, res: Response): Promise<void> => {

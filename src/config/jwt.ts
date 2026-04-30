@@ -1,3 +1,5 @@
+
+// src/config/jwt.ts
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { JwtPayload } from '../types/auth';

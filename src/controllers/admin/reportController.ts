@@ -1,11 +1,9 @@
 // # Quản lý báo cáo, thống kê
 import { Request, Response } from 'express';
 import reportService from '../../services/admin/reportService';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+
 
 // Get revenue report by packages
 export const getRevenueByPackages = async (req: AuthRequest, res: Response): Promise<void> => {

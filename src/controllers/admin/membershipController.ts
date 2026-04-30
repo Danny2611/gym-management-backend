@@ -3,11 +3,8 @@
 import { Request, Response } from 'express';
 import membershipService from '../../services/admin/membershipService';
 import { Types } from 'mongoose';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
 
 // Get all memberships with pagination, filtering and sorting
 export const getAllMemberships = async (req: AuthRequest, res: Response): Promise<void> => {

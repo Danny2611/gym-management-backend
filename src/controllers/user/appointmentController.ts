@@ -4,12 +4,10 @@ import { validationResult } from 'express-validator';
 import appointmentService from '../../services/appointmentService';
 import Membership from '../../models/Membership';
 import { Types } from 'mongoose';
+import { AuthRequest } from '~/src/types/auth';
 
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+
 interface MemberScheduleFilters {
   status?: 'confirmed' | 'pending' | 'cancelled' | 'missed';
   startDate?: Date | string;

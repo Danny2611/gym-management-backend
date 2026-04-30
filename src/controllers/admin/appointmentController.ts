@@ -2,11 +2,9 @@
 import { Request, Response } from 'express';
 import appointmentService from '../../services/admin/appoinmentService';
 import { Types } from 'mongoose';
+import { AuthRequest } from '~/src/types/auth';
 
-interface AuthRequest extends Request {
-  userId?: string;
-  userRole?: string;
-}
+
 
 // Get all appointments with pagination, filtering and sorting
 export const getAllAppointments = async (req: AuthRequest, res: Response): Promise<void> => {
