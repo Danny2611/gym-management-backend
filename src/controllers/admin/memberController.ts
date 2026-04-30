@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import memberService from '../../services/admin/memberService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 

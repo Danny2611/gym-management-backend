@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import packageService from '../../services/admin/packageService';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 // Get all packages with pagination, filtering and sorting

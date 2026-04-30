@@ -4,7 +4,7 @@ import memberReportService from '../../../services/admin/reports/memberReportSer
 import { Types } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../../types/auth';
 
 
 

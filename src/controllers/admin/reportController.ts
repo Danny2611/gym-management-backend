@@ -1,7 +1,7 @@
 // # Quản lý báo cáo, thống kê
 import { Request, Response } from 'express';
 import reportService from '../../services/admin/reportService';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 

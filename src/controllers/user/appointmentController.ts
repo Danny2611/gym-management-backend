@@ -4,7 +4,7 @@ import { validationResult } from 'express-validator';
 import appointmentService from '../../services/appointmentService';
 import Membership from '../../models/Membership';
 import { Types } from 'mongoose';
-import { AuthRequest } from '~/src/types/auth';
+import { AuthRequest } from '../../types/auth';
 
 
 
